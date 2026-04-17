@@ -1,0 +1,213 @@
+[
+  {
+    "endpoint": "http://127.0.0.1:8810/v1",
+    "model": "qwen3.6-q8kxl",
+    "total_rounds": 20,
+    "first_degradation_round": null,
+    "rounds_completed_clean": 20,
+    "total_tool_calls": 20,
+    "total_elapsed_s": 33.91574764251709,
+    "rounds": [
+      {
+        "round": 1,
+        "has_structured_tool_calls": true,
+        "num_tool_calls": 1,
+        "leaks": [],
+        "content_preview": "",
+        "elapsed_s": 3.18,
+        "degraded": false,
+        "finish_reason": "tool_calls"
+      },
+      {
+        "round": 2,
+        "has_structured_tool_calls": true,
+        "num_tool_calls": 1,
+        "leaks": [],
+        "content_preview": "",
+        "elapsed_s": 1.2,
+        "degraded": false,
+        "finish_reason": "tool_calls"
+      },
+      {
+        "round": 3,
+        "has_structured_tool_calls": true,
+        "num_tool_calls": 1,
+        "leaks": [],
+        "content_preview": "",
+        "elapsed_s": 1.25,
+        "degraded": false,
+        "finish_reason": "tool_calls"
+      },
+      {
+        "round": 4,
+        "has_structured_tool_calls": true,
+        "num_tool_calls": 1,
+        "leaks": [],
+        "content_preview": "",
+        "elapsed_s": 2.84,
+        "degraded": false,
+        "finish_reason": "tool_calls"
+      },
+      {
+        "round": 5,
+        "has_structured_tool_calls": true,
+        "num_tool_calls": 1,
+        "leaks": [],
+        "content_preview": "",
+        "elapsed_s": 3.19,
+        "degraded": false,
+        "finish_reason": "tool_calls"
+      },
+      {
+        "round": 6,
+        "has_structured_tool_calls": true,
+        "num_tool_calls": 1,
+        "leaks": [],
+        "content_preview": "Now moving to topic 2: the Japanese aesthetic concept 'Ma' (間).\n\n",
+        "elapsed_s": 1.44,
+        "degraded": false,
+        "finish_reason": "tool_calls"
+      },
+      {
+        "round": 7,
+        "has_structured_tool_calls": true,
+        "num_tool_calls": 1,
+        "leaks": [],
+        "content_preview": "",
+        "elapsed_s": 1.14,
+        "degraded": false,
+        "finish_reason": "tool_calls"
+      },
+      {
+        "round": 8,
+        "has_structured_tool_calls": true,
+        "num_tool_calls": 1,
+        "leaks": [],
+        "content_preview": "",
+        "elapsed_s": 1.18,
+        "degraded": false,
+        "finish_reason": "tool_calls"
+      },
+      {
+        "round": 9,
+        "has_structured_tool_calls": true,
+        "num_tool_calls": 1,
+        "leaks": [],
+        "content_preview": "",
+        "elapsed_s": 2.75,
+        "degraded": false,
+        "finish_reason": "tool_calls"
+      },
+      {
+        "round": 10,
+        "has_structured_tool_calls": true,
+        "num_tool_calls": 1,
+        "leaks": [],
+        "content_preview": "",
+        "elapsed_s": 2.99,
+        "degraded": false,
+        "finish_reason": "tool_calls"
+      },
+      {
+        "round": 11,
+        "has_structured_tool_calls": true,
+        "num_tool_calls": 1,
+        "leaks": [],
+        "content_preview": "Now moving to topic 3: emptiness and restraint in modern product design.\n\n",
+        "elapsed_s": 1.39,
+        "degraded": false,
+        "finish_reason": "tool_calls"
+      },
+      {
+        "round": 12,
+        "has_structured_tool_calls": true,
+        "num_tool_calls": 1,
+        "leaks": [],
+        "content_preview": "",
+        "elapsed_s": 1.32,
+        "degraded": false,
+        "finish_reason": "tool_calls"
+      },
+      {
+        "round": 13,
+        "has_structured_tool_calls": true,
+        "num_tool_calls": 1,
+        "leaks": [],
+        "content_preview": "",
+        "elapsed_s": 1.43,
+        "degraded": false,
+        "finish_reason": "tool_calls"
+      },
+      {
+        "round": 14,
+        "has_structured_tool_calls": true,
+        "num_tool_calls": 1,
+        "leaks": [],
+        "content_preview": "",
+        "elapsed_s": 1.22,
+        "degraded": false,
+        "finish_reason": "tool_calls"
+      },
+      {
+        "round": 15,
+        "has_structured_tool_calls": true,
+        "num_tool_calls": 1,
+        "leaks": [],
+        "content_preview": "",
+        "elapsed_s": 1.09,
+        "degraded": false,
+        "finish_reason": "tool_calls"
+      },
+      {
+        "round": 16,
+        "has_structured_tool_calls": true,
+        "num_tool_calls": 1,
+        "leaks": [],
+        "content_preview": "",
+        "elapsed_s": 1.23,
+        "degraded": false,
+        "finish_reason": "tool_calls"
+      },
+      {
+        "round": 17,
+        "has_structured_tool_calls": true,
+        "num_tool_calls": 1,
+        "leaks": [],
+        "content_preview": "",
+        "elapsed_s": 1.48,
+        "degraded": false,
+        "finish_reason": "tool_calls"
+      },
+      {
+        "round": 18,
+        "has_structured_tool_calls": true,
+        "num_tool_calls": 1,
+        "leaks": [],
+        "content_preview": "",
+        "elapsed_s": 1.14,
+        "degraded": false,
+        "finish_reason": "tool_calls"
+      },
+      {
+        "round": 19,
+        "has_structured_tool_calls": true,
+        "num_tool_calls": 1,
+        "leaks": [],
+        "content_preview": "",
+        "elapsed_s": 1.09,
+        "degraded": false,
+        "finish_reason": "tool_calls"
+      },
+      {
+        "round": 20,
+        "has_structured_tool_calls": true,
+        "num_tool_calls": 1,
+        "leaks": [],
+        "content_preview": "",
+        "elapsed_s": 1.37,
+        "degraded": false,
+        "finish_reason": "tool_calls"
+      }
+    ]
+  }
+]

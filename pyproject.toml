@@ -1,0 +1,12 @@
+[project]
+name = "qwen-mlx-bench"
+version = "0.1.0"
+description = "Qwen3.6-35B-A3B MLX DWQ vs GGUF multi-turn tool calling benchmark"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "mlx-lm>=0.28.0",
+    "openai>=1.50.0",
+    "httpx",
+    "rich",
+    "huggingface-hub",
+]
