@@ -1,0 +1,68 @@
+[
+  {
+    "label": "dwq_run1",
+    "endpoint": "http://127.0.0.1:8811/v1",
+    "model": "mlx-community/Qwen3.6-35B-A3B-4bit-DWQ",
+    "ttft_s": 0,
+    "total_elapsed_s": 17.415,
+    "output_tokens": 1500,
+    "prompt_tokens": 84,
+    "decode_tok_s": 86.07,
+    "prefill_tok_s": null
+  },
+  {
+    "label": "dwq_run2",
+    "endpoint": "http://127.0.0.1:8811/v1",
+    "model": "mlx-community/Qwen3.6-35B-A3B-4bit-DWQ",
+    "ttft_s": 0,
+    "total_elapsed_s": 16.94,
+    "output_tokens": 1500,
+    "prompt_tokens": 84,
+    "decode_tok_s": 88.49,
+    "prefill_tok_s": null
+  },
+  {
+    "label": "dwq_run3",
+    "endpoint": "http://127.0.0.1:8811/v1",
+    "model": "mlx-community/Qwen3.6-35B-A3B-4bit-DWQ",
+    "ttft_s": 0,
+    "total_elapsed_s": 17.012,
+    "output_tokens": 1500,
+    "prompt_tokens": 84,
+    "decode_tok_s": 88.11,
+    "prefill_tok_s": null
+  },
+  {
+    "label": "q8_run1",
+    "endpoint": "http://127.0.0.1:8810/v1",
+    "model": "qwen3.6-q8kxl",
+    "ttft_s": 0,
+    "total_elapsed_s": 25.293,
+    "output_tokens": 1500,
+    "prompt_tokens": 84,
+    "decode_tok_s": 59.27,
+    "prefill_tok_s": null
+  },
+  {
+    "label": "q8_run2",
+    "endpoint": "http://127.0.0.1:8810/v1",
+    "model": "qwen3.6-q8kxl",
+    "ttft_s": 0,
+    "total_elapsed_s": 25.004,
+    "output_tokens": 1500,
+    "prompt_tokens": 84,
+    "decode_tok_s": 59.95,
+    "prefill_tok_s": null
+  },
+  {
+    "label": "q8_run3",
+    "endpoint": "http://127.0.0.1:8810/v1",
+    "model": "qwen3.6-q8kxl",
+    "ttft_s": 0,
+    "total_elapsed_s": 25.091,
+    "output_tokens": 1500,
+    "prompt_tokens": 84,
+    "decode_tok_s": 59.74,
+    "prefill_tok_s": null
+  }
+]
