@@ -1,0 +1,42 @@
+{
+  "model": "35b-a3b-q8kxl",
+  "topic_id": "07-fragile-install-fallback",
+  "sandbox_dir": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/35b-a3b-q8kxl/07-fragile-install-fallback/20260423-013819",
+  "turns": 13,
+  "tool_calls": 12,
+  "tool_errors": 0,
+  "wall_time_s": 126.31,
+  "finish_reason": "stop",
+  "final_message": "Both deliverables are in place. Here's a summary:\n\n## Deliverables\n\n**`poc.py`** — Runnable POC that:\n1. Attempts `piper-tts` first (tries Python API → CLI with model names)\n2. Falls back to `pyttsx3` (uses system TTS engine)\n3. Falls back to printing `would synthesize: hello world reliability test`\n4. Installs missing packages via `subprocess` if not already present\n5. Never crashes — every step is wrapped in try/except\n\n**`README.md`** — Documents the fallback strategy, system dependencies per platform, and usage instructions.\n\nThe script was tested in all three modes:\n- **With pyttsx3 available** → synthesized to `tts_output.wav` (105KB)\n- **With both packages removed** → graceful fallback with \"would synthesize\" message\n- **Return code 0** in all cases",
+  "transcript_path": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/35b-a3b-q8kxl/07-fragile-install-fallback/20260423-013819/_transcript.jsonl",
+  "gates": [
+    {
+      "gate_id": "search_quality",
+      "passed": false,
+      "detail": "0/0 reachable, need 2"
+    },
+    {
+      "gate_id": "poc_syntax",
+      "passed": true,
+      "detail": "compiled"
+    },
+    {
+      "gate_id": "poc_does_not_crash",
+      "passed": false,
+      "detail": "exit=127 (want 0) | last_stderr: /bin/sh: python: command not found"
+    },
+    {
+      "gate_id": "backend_reported",
+      "passed": false,
+      "detail": "matched 0/4, need 1"
+    },
+    {
+      "gate_id": "readme_explains_fallback",
+      "passed": true,
+      "detail": "hit: ['fallback', 'graceful degradation', 'try', 'except']"
+    }
+  ],
+  "completion": false,
+  "score": 0.4,
+  "aborted": ""
+}

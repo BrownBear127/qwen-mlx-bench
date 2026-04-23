@@ -1,0 +1,10 @@
+Done. The POC produces a 96-character extractive summary:
+
+> 台灣的飲食文化深受多元族群的影響，融合了閩南、客家、原住民以及日本殖民時期留下的烹飪傳統。夜市是台灣最具代表性的美食場景之一，從北部的士林夜市到南部的六合夜市，每一攤都承載著數十年的手藝與記憶
+
+**Key design choices:**
+
+- **Character bigram TF-IDF** for sentence scoring — avoids the need for a Chinese word segmenter (jieba etc.) since bigrams naturally capture most two-character words, the dominant word length in Chinese.
+- **Positional boost** for first/last sentences (common extractive baseline).
+- **Greedy budget-filling** in original document order to preserve coherence.
+- Zero dependencies beyond `re`, `math`, `collections`.

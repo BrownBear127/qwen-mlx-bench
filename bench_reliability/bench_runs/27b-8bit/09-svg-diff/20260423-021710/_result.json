@@ -1,0 +1,42 @@
+{
+  "model": "27b-8bit",
+  "topic_id": "09-svg-diff",
+  "sandbox_dir": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-8bit/09-svg-diff/20260423-021710",
+  "turns": 14,
+  "tool_calls": 13,
+  "tool_errors": 0,
+  "wall_time_s": 550.98,
+  "finish_reason": "stop",
+  "final_message": "Everything works. Here's a summary of what was delivered:\n\n**Files created:**\n- **`a.svg`** — Red circle (r=50, black stroke, \"Red Circle\" label)\n- **`b.svg`** — Blue circle (r=60, no stroke, \"Blue Circle\" label)\n- **`poc.py`** — Structural SVG diff engine using `xml.etree.ElementTree` (stdlib only)\n- **`README.md`** — Explains the approach and why structural diff beats text diff\n- **`requirements.txt`** — No third-party deps needed\n\n**How it works:** The POC parses both SVGs as XML trees, recursively walks the element hierarchy, matches elements by tag/id, and compares attributes and text content. It reports 5 semantic changes between the two files:\n\n1. `fill color: red → blue`\n2. `radius: 50 → 60`\n3. `stroke color: black → none`\n4. `stroke width: 2 → 0`\n5. `text: \"Red Circle\" → \"Blue Circle\"`\n\nThis is structurally aware — it wouldn't be confused by whitespace changes, attribute reordering, or namespace formatting differences that would break a raw text diff.",
+  "transcript_path": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-8bit/09-svg-diff/20260423-021710/_transcript.jsonl",
+  "gates": [
+    {
+      "gate_id": "search_quality",
+      "passed": false,
+      "detail": "0/0 reachable, need 2"
+    },
+    {
+      "gate_id": "poc_syntax",
+      "passed": true,
+      "detail": "compiled"
+    },
+    {
+      "gate_id": "poc_runs",
+      "passed": true,
+      "detail": "exit=0 (want 0)"
+    },
+    {
+      "gate_id": "diff_meaningful",
+      "passed": true,
+      "detail": "matched 3/3, need 2"
+    },
+    {
+      "gate_id": "readme_justifies_approach",
+      "passed": true,
+      "detail": "hit: ['structural', 'semantic', 'xml', 'attribute']"
+    }
+  ],
+  "completion": true,
+  "score": 0.8,
+  "aborted": ""
+}

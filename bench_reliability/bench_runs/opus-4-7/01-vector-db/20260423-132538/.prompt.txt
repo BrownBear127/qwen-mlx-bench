@@ -1,0 +1,20 @@
+Find a vector database that runs on macOS Apple Silicon. Write a minimal proof-of-concept
+that ingests these 5 sentences and runs a similarity query, returning the top-3 most similar
+to a query sentence.
+
+Sentences to ingest:
+  1. The cat sat on the mat.
+  2. A dog barked at the mailman.
+  3. Birds fly south for the winter.
+  4. The kitten purred contentedly.
+  5. Migratory species follow seasonal patterns.
+
+Query: "Where do animals go when seasons change?"
+
+Constraints:
+  - If your POC needs third-party Python packages, write a requirements.txt file (one per line) so the verifier can install them
+  - Output two files in your working directory: poc.py and README.md
+  - poc.py must be runnable with: uv run --with <library> python poc.py
+  - README.md must explain: what library you chose, why, and what distance metric is used
+  - The POC must print the top-3 results with their similarity scores
+  - Total work should fit in <15 tool calls

@@ -1,0 +1,42 @@
+{
+  "model": "gpt-codex",
+  "topic_id": "03-sqlite-migration",
+  "sandbox_dir": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/gpt-codex/03-sqlite-migration/20260423-133003",
+  "turns": 7,
+  "tool_calls": 14,
+  "tool_errors": 0,
+  "wall_time_s": 186.95,
+  "finish_reason": "",
+  "final_message": "DOUT')\nprint(first.stdout.strip())\nprint('FIRST_STDERR')\nprint(first.stderr.strip())\nprint('SECOND_RETURN', second.returncode)\nprint('SECOND_STDOUT')\nprint(second.stdout.strip())\nprint('SECOND_STDERR')\nprint(second.stderr.strip())\n\nassert first.returncode == 0, 'first run failed'\nassert second.returncode == 0, 'second run failed'\nassert first.stdout.strip().splitlines() == [\n    'applying 001_init.sql',\n    'applying 002_add_users.sql',\n    'applied 2 migration(s)',\n], 'unexpected first run output'\nassert second.stdout.strip() == 'no pending migrations', 'unexpected second run output'\n\nwith sqlite3.connect(db_path) as connection:\n    applied = connection.execute(\n        'SELECT migration_id FROM schema_migrations ORDER BY migration_id'\n    ).fetchall()\n    users = connection.execute('SELECT email FROM users ORDER BY id').fetchall()\n    config = connection.execute('SELECT key, value FROM app_config').fetchall()\n\nprint('APPLIED_IDS', applied)\nprint('USERS', users)\nprint('CONFIG', config)\n\nassert applied == [('001_init',), ('002_add_users',)]\nassert users == [('demo@example.com',)]\nassert config == [('app_name', 'sqlite-migration-poc')]\nPY\" in /Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/gpt-codex/03-sqlite-migration/20260423-133003\n succeeded in 0ms:\nFIRST_RETURN 0\nFIRST_STDOUT\napplying 001_init.sql\napplying 002_add_users.sql\napplied 2 migration(s)\nFIRST_STDERR\n\nSECOND_RETURN 0\nSECOND_STDOUT\nno pending migrations\nSECOND_STDERR\n\nAPPLIED_IDS [('001_init',), ('002_add_users',)]\nUSERS [('demo@example.com',)]\nCONFIG [('app_name', 'sqlite-migration-poc')]\n\ndiff --git a/bench_reliability/bench_runs/gpt-codex/03-sqlite-migration/20260423-133003/README.md b/bench_reliability/bench_runs/gpt-codex/03-sqlite-migration/20260423-133003/README.md\nnew file mode 100644\nindex 0000000000000000000000000000000000000000..5e078a6d621963b483fa8a8b9062f81a1ccda18c\n--- /dev/null\n+++ b/bench_reliability/bench_runs/gpt-codex/03-sqlite-migration/20260423-133003/README.md\n@@ -",
+  "transcript_path": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/gpt-codex/03-sqlite-migration/20260423-133003/_transcript.txt",
+  "gates": [
+    {
+      "gate_id": "search_quality",
+      "passed": false,
+      "detail": "0/0 reachable, need 2"
+    },
+    {
+      "gate_id": "poc_syntax",
+      "passed": true,
+      "detail": "compiled"
+    },
+    {
+      "gate_id": "poc_runs",
+      "passed": false,
+      "detail": "exit=127 (want 0) | last_stderr: /bin/sh: python: command not found"
+    },
+    {
+      "gate_id": "idempotency_signal",
+      "passed": false,
+      "detail": "matched 0/3, need 1"
+    },
+    {
+      "gate_id": "stdlib_only",
+      "passed": true,
+      "detail": "matched 0/2, need 0"
+    }
+  ],
+  "completion": false,
+  "score": 0.4,
+  "aborted": ""
+}

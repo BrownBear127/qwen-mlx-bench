@@ -1,0 +1,12 @@
+In OpenTelemetry the terms "Collector" and "SDK" refer to two very different
+components that beginners often confuse. Research the distinction, then write a
+minimal Python POC that uses the OpenTelemetry SDK (NOT the Collector) to emit a
+single trace span with one attribute, and exports it to the console (no network
+calls, no Collector running).
+
+Requirements:
+  - Output: poc.py + README.md
+  - poc.py must be runnable with: uv run --no-project --with <libs> python poc.py
+  - Print the exported span JSON to stdout
+  - README.md must clearly distinguish what the Collector does vs what the SDK does
+    in its own words (>=3 sentences each)

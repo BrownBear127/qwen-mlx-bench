@@ -1,0 +1,42 @@
+{
+  "model": "35b-a3b-dwq-vanilla",
+  "topic_id": "07-fragile-install-fallback",
+  "sandbox_dir": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/35b-a3b-dwq-vanilla/07-fragile-install-fallback/20260423-024702",
+  "turns": 9,
+  "tool_calls": 8,
+  "tool_errors": 0,
+  "wall_time_s": 116.96,
+  "finish_reason": "stop",
+  "final_message": "All deliverables are in place. Here's a summary:\n\n---\n\n**Deliverables created:**\n\n| File | Description |\n|---|---|\n| `poc.py` | Main script — attempts piper-tts → pyttsx3 → fallback, never crashes |\n| `requirements.txt` | Lists `piper-tts` and `pyttsx3` (one per line) |\n| `README.md` | Documents the 3-tier fallback strategy |\n\n**How it works:**\n\n1. **piper-tts** — imports `piper`; if missing, runs `pip install piper-tts`. Needs a `.onnx` model file in `piper_models/` and system deps like `espeak-ng`.\n2. **pyttsx3** — same import→install pattern. Uses OS system voices; `save_to_file` works on most platforms.\n3. **Fallback** — prints `would synthesize: hello world reliability test` if neither backend works.\n\n**Test run result:** The script successfully used **pyttsx3** as the backend and produced a 124K audio file (`tts_output.wav`).",
+  "transcript_path": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/35b-a3b-dwq-vanilla/07-fragile-install-fallback/20260423-024702/_transcript.jsonl",
+  "gates": [
+    {
+      "gate_id": "search_quality",
+      "passed": false,
+      "detail": "1/1 reachable, need 2"
+    },
+    {
+      "gate_id": "poc_syntax",
+      "passed": true,
+      "detail": "compiled"
+    },
+    {
+      "gate_id": "poc_does_not_crash",
+      "passed": false,
+      "detail": "exit=127 (want 0) | last_stderr: /bin/sh: python: command not found"
+    },
+    {
+      "gate_id": "backend_reported",
+      "passed": false,
+      "detail": "matched 0/4, need 1"
+    },
+    {
+      "gate_id": "readme_explains_fallback",
+      "passed": true,
+      "detail": "hit: ['fallback', 'graceful degradation', 'try']"
+    }
+  ],
+  "completion": false,
+  "score": 0.4,
+  "aborted": ""
+}

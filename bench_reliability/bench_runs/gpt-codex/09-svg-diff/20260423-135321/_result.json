@@ -1,0 +1,42 @@
+{
+  "model": "gpt-codex",
+  "topic_id": "09-svg-diff",
+  "sandbox_dir": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/gpt-codex/09-svg-diff/20260423-135321",
+  "turns": 6,
+  "tool_calls": 10,
+  "tool_errors": 0,
+  "wall_time_s": 141.74,
+  "finish_reason": "",
+  "final_message": "eports the actual semantic changes in the drawing.\n+\n+For this example, the useful changes are:\n+\n+- the circle fill changed from red to blue\n+- the circle radius changed from 50 to 60\n+\n+That is more meaningful than line-by-line text changes.\n+\n+## Run\n+\n+```bash\n+uv run --no-project --with lxml python poc.py\n+```\n+\n+## Dependency\n+\n+The dependency list is in `requirements.txt`:\n+\n+```text\n+lxml\n+```\ndiff --git a/bench_reliability/bench_runs/gpt-codex/09-svg-diff/20260423-135321/a.svg b/bench_reliability/bench_runs/gpt-codex/09-svg-diff/20260423-135321/a.svg\nnew file mode 100644\nindex 0000000000000000000000000000000000000000..7ffcd7ff48101da97950c487a28ba5e86ab1b0d9\n--- /dev/null\n+++ b/bench_reliability/bench_runs/gpt-codex/09-svg-diff/20260423-135321/a.svg\n@@ -0,0 +1,3 @@\n+<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"200\" height=\"200\" viewBox=\"0 0 200 200\">\n+  <circle cx=\"100\" cy=\"100\" r=\"50\" fill=\"red\" />\n+</svg>\ndiff --git a/bench_reliability/bench_runs/gpt-codex/09-svg-diff/20260423-135321/b.svg b/bench_reliability/bench_runs/gpt-codex/09-svg-diff/20260423-135321/b.svg\nnew file mode 100644\nindex 0000000000000000000000000000000000000000..c010fa616f6c338a459c4aa40e360e5284a33236\n--- /dev/null\n+++ b/bench_reliability/bench_runs/gpt-codex/09-svg-diff/20260423-135321/b.svg\n@@ -0,0 +1,3 @@\n+<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"200\" height=\"200\" viewBox=\"0 0 200 200\">\n+  <circle cx=\"100\" cy=\"100\" r=\"60\" fill=\"blue\" />\n+</svg>\ndiff --git a/bench_reliability/bench_runs/gpt-codex/09-svg-diff/20260423-135321/poc.py b/bench_reliability/bench_runs/gpt-codex/09-svg-diff/20260423-135321/poc.py\nnew file mode 100644\nindex 0000000000000000000000000000000000000000..cf85bf801cd9c2e5bdad79a55a52900e48f90ae1\n--- /dev/null\n+++ b/bench_reliability/bench_runs/gpt-codex/09-svg-diff/20260423-135321/poc.py\n@@ -0,0 +1,101 @@\n+from __future__ import annotations\n+\n+from pathlib import Path\n+from typing import Dict, List\n+\n+from lxml import etree\n+\n+\n+SVG_A = \"\"\"<svg xmlns=\"http:/",
+  "transcript_path": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/gpt-codex/09-svg-diff/20260423-135321/_transcript.txt",
+  "gates": [
+    {
+      "gate_id": "search_quality",
+      "passed": false,
+      "detail": "1/1 reachable, need 2"
+    },
+    {
+      "gate_id": "poc_syntax",
+      "passed": true,
+      "detail": "compiled"
+    },
+    {
+      "gate_id": "poc_runs",
+      "passed": true,
+      "detail": "exit=0 (want 0)"
+    },
+    {
+      "gate_id": "diff_meaningful",
+      "passed": true,
+      "detail": "matched 2/3, need 2"
+    },
+    {
+      "gate_id": "readme_justifies_approach",
+      "passed": true,
+      "detail": "hit: ['semantic', 'xml', 'attribute']"
+    }
+  ],
+  "completion": true,
+  "score": 0.8,
+  "aborted": ""
+}

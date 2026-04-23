@@ -1,0 +1,42 @@
+{
+  "model": "27b-6bit",
+  "topic_id": "10-zh-summarize",
+  "sandbox_dir": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-6bit/10-zh-summarize/20260423-011927",
+  "turns": 11,
+  "tool_calls": 10,
+  "tool_errors": 0,
+  "wall_time_s": 337.67,
+  "finish_reason": "stop",
+  "final_message": "Everything works. Here's a summary of what was delivered:\n\n## Deliverables\n\n### `poc.py`\n- Embeds a ~600-character Traditional Chinese article about traditional crafts, language, and food culture in Taiwan\n- Implements **extractive summarization via TF-IDF on character bigrams**\n- Uses only Python stdlib (`math`, `re`, `collections`) — zero network calls, zero external deps\n- Produces a 149-character summary (within the 50–150 target range)\n- Output is coherent, grammatically correct sentences from the original text\n\n### `README.md`\n- Explains the TF-IDF bigram approach and why it's reasonable under the constraints\n- Documents the algorithm steps, strengths, and limitations\n\n### Key design decisions\n- **Character bigrams instead of words**: Avoids needing a Chinese word segmenter (like `jieba`)\n- **Extractive over abstractive**: Guarantees grammatical correctness and factual faithfulness\n- **Greedy selection + positional reordering**: Picks the most informative sentences while maintaining reading order",
+  "transcript_path": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-6bit/10-zh-summarize/20260423-011927/_transcript.jsonl",
+  "gates": [
+    {
+      "gate_id": "search_quality",
+      "passed": false,
+      "detail": "0/0 reachable, need 1"
+    },
+    {
+      "gate_id": "poc_syntax",
+      "passed": true,
+      "detail": "compiled"
+    },
+    {
+      "gate_id": "poc_runs",
+      "passed": false,
+      "detail": "exit=127 (want 0) | last_stderr: /bin/sh: python: command not found"
+    },
+    {
+      "gate_id": "output_length_in_range",
+      "passed": false,
+      "detail": "matched 0/1, need 1"
+    },
+    {
+      "gate_id": "readme_justifies_method",
+      "passed": true,
+      "detail": "hit: ['extractive', 'tf-idf', 'frequency', 'heuristic', 'n-gram', 'stdlib', 'no network', 'offline']"
+    }
+  ],
+  "completion": false,
+  "score": 0.4,
+  "aborted": ""
+}

@@ -1,0 +1,42 @@
+{
+  "model": "gpt-codex",
+  "topic_id": "10-zh-summarize",
+  "sandbox_dir": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/gpt-codex/10-zh-summarize/20260423-135543",
+  "turns": 7,
+  "tool_calls": 12,
+  "tool_errors": 0,
+  "wall_time_s": 141.78,
+  "finish_reason": "",
+  "final_message": "words without requiring Chinese word segmentation libraries.\n+3. Score each sentence by:\n+   - how many important bigrams it contains,\n+   - a small lead-sentence bonus,\n+   - a mild preference for sentence lengths that combine well into a short summary.\n+4. Try every 1-3 sentence combination and keep the one with the best score while staying between 50 and 150 characters, aiming for about 100.\n+\n+## Why this is reasonable under the constraints\n+\n+- No model download is needed.\n+- No network access is needed.\n+- No third-party tokenizer or embedding library is needed.\n+- Character bigrams are a simple compromise for Traditional Chinese, where whitespace tokenization is not reliable.\n+- The output is extractive, so it tends to stay grammatical and faithful to the source article.\n+\n+This is not meant to be state of the art. It is a deliberately small baseline that produces a short, readable summary under strict offline constraints.\n+\n+## Run\n+\n+```bash\n+python3 poc.py\n+```\n+\n+The script prints:\n+\n+- the summary text\n+- its character count\ndiff --git a/bench_reliability/bench_runs/gpt-codex/10-zh-summarize/20260423-135543/poc.py b/bench_reliability/bench_runs/gpt-codex/10-zh-summarize/20260423-135543/poc.py\nnew file mode 100644\nindex 0000000000000000000000000000000000000000..aefb3c9dc6ea1585d4031e5e9c853ddc9bd6ff09\n--- /dev/null\n+++ b/bench_reliability/bench_runs/gpt-codex/10-zh-summarize/20260423-135543/poc.py\n@@ -0,0 +1,93 @@\n+\"\"\"Minimal offline Traditional Chinese summarization POC.\"\"\"\n+\n+from __future__ import annotations\n+\n+from collections import Counter\n+from itertools import combinations\n+import re\n+\n+\n+ARTICLE = \"\"\"\n+在許多城市裡，設計常常被誤解成最後一道包裝工序：顏色要和諧，字體要好看，海報要足夠醒目，產品的外殼不能太笨重。可是對真正長期工作的設計者而言，設計比較像是一種把混亂重新整理的能力。它要先處理關係，再處理表面；先決定什麼值得被看見，然後才決定如何被看見。當一間小店重新安排動線，讓顧客不必在狹窄走道裡互相閃避，那也是設計。當一本書願意為了閱讀節奏留白，而不是把每一寸紙面都塞滿資訊，那也是設計。好的設計不只在物件上留下風格，也在人的行為裡留下秩序。\n+\n+這種秩序並不冰冷。很多工藝職人其實很清楚，手感與規格並不是互相排斥的兩端。做陶的人知道杯口如果太厚，喝水時嘴唇會先感到阻礙；做木家具的人知道椅背若只追求俐落線條，久坐後肩頸就會暴露設計者沒有真正坐下來想過。於是工藝的細節常常提醒我們：美感不是抽",
+  "transcript_path": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/gpt-codex/10-zh-summarize/20260423-135543/_transcript.txt",
+  "gates": [
+    {
+      "gate_id": "search_quality",
+      "passed": false,
+      "detail": "0/0 reachable, need 1"
+    },
+    {
+      "gate_id": "poc_syntax",
+      "passed": true,
+      "detail": "compiled"
+    },
+    {
+      "gate_id": "poc_runs",
+      "passed": false,
+      "detail": "exit=127 (want 0) | last_stderr: /bin/sh: python: command not found"
+    },
+    {
+      "gate_id": "output_length_in_range",
+      "passed": false,
+      "detail": "matched 0/1, need 1"
+    },
+    {
+      "gate_id": "readme_justifies_method",
+      "passed": true,
+      "detail": "hit: ['extractive', 'no network', 'offline']"
+    }
+  ],
+  "completion": false,
+  "score": 0.4,
+  "aborted": ""
+}

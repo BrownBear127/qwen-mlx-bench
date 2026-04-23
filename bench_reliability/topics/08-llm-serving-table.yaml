@@ -1,0 +1,65 @@
+id: 08-llm-serving-table
+domain: research
+fail_mode_probe: search_plus_structured_output
+prompt: |
+  Research the current OSS landscape for "local LLM serving frameworks" (frameworks
+  that run inference on-device, not hosted services). Produce a markdown table with
+  AT LEAST 5 rows.
+
+  Required columns:
+    | Name | Language | Apple Silicon support | Quantization formats supported | Tool calling? | Repo URL |
+
+  Output:
+    - Write the table to summary.md
+    - Also write a notes.md with one paragraph (3-5 sentences) summarizing the
+      tradeoffs across the frameworks you chose
+
+  Constraints:
+    - If your POC needs third-party Python packages, write a requirements.txt file (one per line) so the verifier can install them
+    - All Repo URLs must be real and reachable
+    - At least 3 of the 5+ frameworks should support Apple Silicon
+    - Be honest if you don't know a column value — write "?" rather than guessing
+    - No POC code needed for this topic
+
+max_turns: 35
+wall_time_limit_s: 540
+
+gates:
+  - id: summary_md_exists
+    type: regex_any
+    patterns:
+      - "\\|.*Name.*\\|.*Language.*\\|"
+      - "\\|.*Apple Silicon.*\\|"
+    against: full_transcript  # heuristic
+    required_matches: 0  # skip; rely on file gate
+
+  - id: table_has_rows
+    type: keyword_any
+    keywords: ["llama.cpp", "mlx", "vllm", "ollama", "lm studio", "exllama", "tgi", "candle", "mistral.rs", "gpustack"]
+    file: summary.md
+    case_insensitive: true
+
+  - id: urls_in_table
+    type: url_reachable
+    required_count: 4
+    extract_from: full_transcript
+    timeout_per_url: 5
+
+  - id: notes_exists
+    type: keyword_any
+    keywords: [tradeoff, trade-off, compare, versus, "vs", performance, ease, support]
+    file: notes.md
+    case_insensitive: true
+
+  - id: honest_unknowns
+    type: regex_any
+    patterns:
+      - "\\?"
+      - "(?i)unknown"
+      - "(?i)unclear"
+    against: full_transcript
+    required_matches: 0  # not strictly required but useful signal — skip pass requirement
+
+scoring:
+  total_gates: 5
+  pass_threshold: 3

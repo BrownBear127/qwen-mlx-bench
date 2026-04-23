@@ -1,5 +1,14 @@
-.venv/
 __pycache__/
 *.pyc
+.venv/
+.watch_27b_sentinels/
+watch_27b_uploads.log
+watch_27b_uploads.nohup.log
+hauhau_results/
 .DS_Store
-.ruff_cache/
+*.bak-*
+
+# Bench transcripts (large, regenerable from re-running bench)
+bench_reliability/bench_runs/**/_transcript.jsonl
+bench_reliability/bench_runs/**/_transcript.txt
+bench_reliability/bench_runs/**/__pycache__/

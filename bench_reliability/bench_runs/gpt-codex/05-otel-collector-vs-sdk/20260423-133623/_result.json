@@ -1,0 +1,42 @@
+{
+  "model": "gpt-codex",
+  "topic_id": "05-otel-collector-vs-sdk",
+  "sandbox_dir": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/gpt-codex/05-otel-collector-vs-sdk/20260423-133623",
+  "turns": 7,
+  "tool_calls": 10,
+  "tool_errors": 0,
+  "wall_time_s": 158.58,
+  "finish_reason": "",
+  "final_message": ": {\n        \"demo.attribute\": \"hello\"\n    },\n    \"events\": [],\n    \"links\": [],\n    \"resource\": {\n        \"attributes\": {\n            \"telemetry.sdk.language\": \"python\",\n            \"telemetry.sdk.name\": \"opentelemetry\",\n            \"telemetry.sdk.version\": \"1.41.0\",\n            \"service.name\": \"unknown_service\"\n        },\n        \"schema_url\": \"\"\n    }\n}\n\ndiff --git a/bench_reliability/bench_runs/gpt-codex/05-otel-collector-vs-sdk/20260423-133623/README.md b/bench_reliability/bench_runs/gpt-codex/05-otel-collector-vs-sdk/20260423-133623/README.md\nnew file mode 100644\nindex 0000000000000000000000000000000000000000..ff1c097a88ee8c45d3448415354bcb70df9e9773\n--- /dev/null\n+++ b/bench_reliability/bench_runs/gpt-codex/05-otel-collector-vs-sdk/20260423-133623/README.md\n@@ -0,0 +1,55 @@\n+# OpenTelemetry SDK-Only Python POC\n+\n+This example uses the OpenTelemetry Python SDK directly inside the application process. It creates one trace span, adds one span attribute, and sends the exported result to stdout. No Collector is required, and no network call is made.\n+\n+## Collector vs SDK\n+\n+### What the Collector does\n+\n+The OpenTelemetry Collector is a separate service, not a library you import into your Python file. Its job is to receive telemetry from applications, optionally reshape or filter it, and then forward it to one or more backends. In other words, the Collector sits between apps and observability systems so you can centralize routing, processing, and policy outside your application code.\n+\n+### What the SDK does\n+\n+The OpenTelemetry SDK is the in-process library that your application uses to create and manage telemetry. It is responsible for things like creating spans, attaching attributes, applying sampling and span processing, and handing finished spans to an exporter. In this POC, the SDK never talks to a remote service because it uses `ConsoleSpanExporter`, which prints the span JSON directly to stdout.\n+\n+## Why this POC uses the SDK and not the Collector\n+\n+This",
+  "transcript_path": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/gpt-codex/05-otel-collector-vs-sdk/20260423-133623/_transcript.txt",
+  "gates": [
+    {
+      "gate_id": "search_quality",
+      "passed": true,
+      "detail": "5/5 reachable, need 3"
+    },
+    {
+      "gate_id": "poc_syntax",
+      "passed": true,
+      "detail": "compiled"
+    },
+    {
+      "gate_id": "poc_runs",
+      "passed": true,
+      "detail": "exit=0 (want 0)"
+    },
+    {
+      "gate_id": "trace_emitted",
+      "passed": true,
+      "detail": "matched 3/3, need 2"
+    },
+    {
+      "gate_id": "readme_disambiguates",
+      "passed": true,
+      "detail": "hit: ['collector', 'sdk', 'in-process', 'exporter']"
+    }
+  ],
+  "completion": true,
+  "score": 1.0,
+  "aborted": ""
+}

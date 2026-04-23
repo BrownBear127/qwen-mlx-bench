@@ -1,0 +1,42 @@
+{
+  "model": "27b-8bit",
+  "topic_id": "10-zh-summarize",
+  "sandbox_dir": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-8bit/10-zh-summarize/20260423-022621",
+  "turns": 6,
+  "tool_calls": 5,
+  "tool_errors": 0,
+  "wall_time_s": 209.49,
+  "finish_reason": "stop",
+  "final_message": "Everything works cleanly. Here's a summary of what was delivered:\n\n**`poc.py`** — A self-contained script with:\n- A 605-character Traditional Chinese article about traditional crafts, language, food culture, and cultural preservation\n- An extractive summarizer using **TF-IDF on character bigrams** (only `re`, `math`, `collections` from stdlib)\n- Produces a **104-character summary** (within the 50–150 target range)\n- Zero network calls, zero external dependencies\n\n**`README.md`** — Documents the approach, why it's reasonable under the constraints, and its limitations.\n\nThe summary correctly captures the article's four main themes: traditional crafts facing modern challenges, language/cultural preservation, food culture, and the need for innovation rooted in tradition.",
+  "transcript_path": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-8bit/10-zh-summarize/20260423-022621/_transcript.jsonl",
+  "gates": [
+    {
+      "gate_id": "search_quality",
+      "passed": false,
+      "detail": "0/0 reachable, need 1"
+    },
+    {
+      "gate_id": "poc_syntax",
+      "passed": true,
+      "detail": "compiled"
+    },
+    {
+      "gate_id": "poc_runs",
+      "passed": false,
+      "detail": "exit=127 (want 0) | last_stderr: /bin/sh: python: command not found"
+    },
+    {
+      "gate_id": "output_length_in_range",
+      "passed": false,
+      "detail": "matched 0/1, need 1"
+    },
+    {
+      "gate_id": "readme_justifies_method",
+      "passed": true,
+      "detail": "hit: ['extractive', 'tf-idf', 'frequency', 'n-gram', 'stdlib', 'no network', 'offline']"
+    }
+  ],
+  "completion": false,
+  "score": 0.4,
+  "aborted": ""
+}

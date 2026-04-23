@@ -1,0 +1,18 @@
+Some Python libraries require system dependencies and can fail to install on a
+fresh environment (eg piper-tts needs eSpeak / espeak-ng on macOS, or fails to
+build wheels on Apple Silicon).
+
+Write a POC that:
+  1. Attempts to import a TTS library (try `piper-tts` first, fallback to `pyttsx3`,
+     fallback to printing "would synthesize: <text>" if neither is installable)
+  2. Synthesizes the text "hello world reliability test" to an output file
+     (or prints the would-do message)
+  3. Prints which backend was actually used and where the output (if any) is
+
+Constraints:
+  - If your POC needs third-party Python packages, write a requirements.txt file (one per line) so the verifier can install them
+  - Output: poc.py + README.md
+  - poc.py must be runnable with: python poc.py (DO NOT pre-install via uv;
+    the script itself should attempt install via subprocess or graceful degradation)
+  - Must NOT crash even if no TTS backend is available
+  - README.md explains the fallback strategy

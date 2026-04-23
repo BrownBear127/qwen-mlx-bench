@@ -1,0 +1,42 @@
+{
+  "model": "27b-8bit",
+  "topic_id": "08-llm-serving-table",
+  "sandbox_dir": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-8bit/08-llm-serving-table/20260423-021141",
+  "turns": 15,
+  "tool_calls": 22,
+  "tool_errors": 2,
+  "wall_time_s": 322.52,
+  "finish_reason": "stop",
+  "final_message": "Both files look good. Let me verify the constraints are met:\n\n- **6 rows** (≥5 ✅)\n- **All required columns** present ✅\n- **Apple Silicon support**: llama.cpp, Ollama, MLX/mlx-lm, vLLM = 4 frameworks (≥3 ✅)\n- **All repo URLs are real and reachable** (verified via fetch ✅)\n- **No POC code needed** ✅\n- **notes.md** has one paragraph with 5 sentences ✅\n\nNo third-party Python packages were needed for this research task, so no `requirements.txt` is necessary.\n\n---\n\n**Summary of deliverables:**\n\n1. **`summary.md`** — Markdown table with 6 local LLM serving frameworks covering: llama.cpp, Ollama, MLX/mlx-lm, vLLM, SGLang, and Hugging Face TGI. All columns filled with verified data from the repos.\n\n2. **`notes.md`** — One-paragraph summary (5 sentences) covering the key tradeoffs: hardware breadth vs. ease of use, Apple Silicon optimization, GPU-focused throughput engines, and the universal trend toward tool calling support via OpenAI-compatible APIs.",
+  "transcript_path": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-8bit/08-llm-serving-table/20260423-021141/_transcript.jsonl",
+  "gates": [
+    {
+      "gate_id": "summary_md_exists",
+      "passed": true,
+      "detail": "matched 2/2, need 0"
+    },
+    {
+      "gate_id": "table_has_rows",
+      "passed": true,
+      "detail": "hit: ['llama.cpp', 'mlx', 'vllm', 'ollama', 'tgi']"
+    },
+    {
+      "gate_id": "urls_in_table",
+      "passed": true,
+      "detail": "7/7 reachable, need 4"
+    },
+    {
+      "gate_id": "notes_exists",
+      "passed": true,
+      "detail": "hit: ['tradeoff', 'ease', 'support']"
+    },
+    {
+      "gate_id": "honest_unknowns",
+      "passed": true,
+      "detail": "matched 1/3, need 0"
+    }
+  ],
+  "completion": true,
+  "score": 1.0,
+  "aborted": ""
+}

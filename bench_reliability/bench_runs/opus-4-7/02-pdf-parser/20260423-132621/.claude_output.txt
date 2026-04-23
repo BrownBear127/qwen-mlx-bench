@@ -1,0 +1,10 @@
+Done. Here's what was created:
+
+- **`poc.py`** — Downloads a PDF via `urllib`, parses it with PyMuPDF, and prints exactly the first 500 characters of page 1.
+- **`requirements.txt`** — Lists `pymupdf` as the sole dependency.
+- **`README.md`** — Explains why PyMuPDF is cross-platform (statically linked MuPDF, pre-built wheels for macOS/Linux/Windows, no system dependencies).
+
+Run it with:
+```bash
+uv run --no-project --with pymupdf python poc.py
+```

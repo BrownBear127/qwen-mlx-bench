@@ -1,0 +1,42 @@
+{
+  "model": "gpt-codex",
+  "topic_id": "02-pdf-parser",
+  "sandbox_dir": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/gpt-codex/02-pdf-parser/20260423-132608",
+  "turns": 9,
+  "tool_calls": 10,
+  "tool_errors": 0,
+  "wall_time_s": 179.44,
+  "finish_reason": "",
+  "final_message": " page contains fewer than 500 characters after normalization.\")\n+\n+    sys.stdout.write(normalized_text[:500])\n+\n+\n+if __name__ == \"__main__\":\n+    main()\ndiff --git a/bench_reliability/bench_runs/gpt-codex/02-pdf-parser/20260423-132608/requirements.txt b/bench_reliability/bench_runs/gpt-codex/02-pdf-parser/20260423-132608/requirements.txt\nnew file mode 100644\nindex 0000000000000000000000000000000000000000..e13efeb95ce866dd4274ae88e1fbf6962e100c24\n--- /dev/null\n+++ b/bench_reliability/bench_runs/gpt-codex/02-pdf-parser/20260423-132608/requirements.txt\n@@ -0,0 +1 @@\n+pypdf==6.8.0\n\ndiff --git a/bench_reliability/bench_runs/gpt-codex/02-pdf-parser/20260423-132608/README.md b/bench_reliability/bench_runs/gpt-codex/02-pdf-parser/20260423-132608/README.md\nnew file mode 100644\nindex 0000000000000000000000000000000000000000..d7e2018839e4c2ca0b55669075df757a1a70e614\n--- /dev/null\n+++ b/bench_reliability/bench_runs/gpt-codex/02-pdf-parser/20260423-132608/README.md\n@@ -0,0 +1,31 @@\n+# PDF parser POC\n+\n+This POC uses `pypdf`.\n+\n+## Why this library fits macOS and Linux\n+\n+`pypdf` is a pure Python package, so it does not rely on macOS-only frameworks, native system binaries, or shell commands. Its PyPI metadata also marks it as `Operating System :: OS Independent`, and the published wheel is `py3-none-any`, which means the same package works across platforms supported by Python.\n+\n+References:\n+\n+- PyPI: https://pypi.org/project/pypdf/\n+- Documentation: https://pypdf.readthedocs.io/\n+\n+## Why this PDF is acceptable\n+\n+The script downloads a public PDF from NASA Technical Reports Server:\n+\n+- Source page: https://ntrs.nasa.gov/citations/19790016570\n+- Download URL used by the script: https://ntrs.nasa.gov/api/citations/19790016570/downloads/19790016570.pdf\n+\n+The source page states: `Copyright: Work of the US Gov. Public Use Permitted.`\n+\n+## Run\n+\n+```bash\n+uv run --no-project --with pypdf==6.8.0 python poc.py\n+```\n+\n+## What it prints\n+\n+Exactly the first 500 characters of the ",
+  "transcript_path": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/gpt-codex/02-pdf-parser/20260423-132608/_transcript.txt",
+  "gates": [
+    {
+      "gate_id": "search_quality",
+      "passed": true,
+      "detail": "4/11 reachable, need 3"
+    },
+    {
+      "gate_id": "poc_syntax",
+      "passed": true,
+      "detail": "compiled"
+    },
+    {
+      "gate_id": "poc_runs",
+      "passed": true,
+      "detail": "exit=0 (want 0)"
+    },
+    {
+      "gate_id": "poc_output_has_text",
+      "passed": false,
+      "detail": "matched 0/1, need 1"
+    },
+    {
+      "gate_id": "readme_addresses_portability",
+      "passed": true,
+      "detail": "hit: ['linux', 'pure python']"
+    }
+  ],
+  "completion": true,
+  "score": 0.8,
+  "aborted": ""
+}

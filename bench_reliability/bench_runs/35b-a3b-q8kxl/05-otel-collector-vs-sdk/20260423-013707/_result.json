@@ -1,0 +1,42 @@
+{
+  "model": "35b-a3b-q8kxl",
+  "topic_id": "05-otel-collector-vs-sdk",
+  "sandbox_dir": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/35b-a3b-q8kxl/05-otel-collector-vs-sdk/20260423-013707",
+  "turns": 32,
+  "tool_calls": 32,
+  "tool_errors": 0,
+  "wall_time_s": 31.13,
+  "finish_reason": "",
+  "final_message": "",
+  "transcript_path": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/35b-a3b-q8kxl/05-otel-collector-vs-sdk/20260423-013707/_transcript.jsonl",
+  "gates": [
+    {
+      "gate_id": "search_quality",
+      "passed": false,
+      "detail": "0/0 reachable, need 3"
+    },
+    {
+      "gate_id": "poc_syntax",
+      "passed": false,
+      "detail": "poc.py missing"
+    },
+    {
+      "gate_id": "poc_runs",
+      "passed": false,
+      "detail": "exit=2 (want 0) | last_stderr: /Users/fran/.cache/uv/builds-v0/.tmptMGd78/bin/python: can't open file '/Users/fran/projects/qwen-mlx-bench/bench_reliab"
+    },
+    {
+      "gate_id": "trace_emitted",
+      "passed": false,
+      "detail": "matched 0/3, need 2"
+    },
+    {
+      "gate_id": "readme_disambiguates",
+      "passed": false,
+      "detail": "README.md missing"
+    }
+  ],
+  "completion": false,
+  "score": 0.0,
+  "aborted": "max_turns"
+}

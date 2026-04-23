@@ -1,0 +1,9 @@
+Working as expected. Both files are ready:
+
+- **`poc.py`** — 14 lines. Creates a `TracerProvider` with a `ConsoleSpanExporter`, starts a single span with a `greeting=world` attribute, and prints the span JSON to stdout on exit.
+- **`README.md`** — Explains the SDK (in-process library that generates telemetry) vs the Collector (standalone process that receives, transforms, and re-exports telemetry), plus the run command.
+
+Run it with:
+```
+uv run --no-project --with opentelemetry-api --with opentelemetry-sdk python poc.py
+```

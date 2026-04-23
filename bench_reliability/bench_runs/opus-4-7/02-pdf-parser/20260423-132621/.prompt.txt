@@ -1,0 +1,12 @@
+Find a Python PDF parser library that works on BOTH macOS and Linux (no macOS-only
+dependencies, no system commands). Write a minimal POC that downloads a small
+public-domain PDF and prints the extracted text from its first page only.
+
+Constraints:
+  - If your POC needs third-party Python packages, write a requirements.txt file (one per line) so the verifier can install them
+  - Output: poc.py + README.md
+  - poc.py must be runnable with: uv run --no-project --with <library> python poc.py
+  - The PDF should be downloaded inside the script from a public URL
+  - README.md must explain why your chosen library is cross-platform compatible
+  - Print the first 500 chars of the first page (no more, no less)
+  - Total work should fit in <15 tool calls

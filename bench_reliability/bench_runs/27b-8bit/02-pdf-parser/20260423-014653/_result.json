@@ -1,0 +1,42 @@
+{
+  "model": "27b-8bit",
+  "topic_id": "02-pdf-parser",
+  "sandbox_dir": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-8bit/02-pdf-parser/20260423-014653",
+  "turns": 30,
+  "tool_calls": 30,
+  "tool_errors": 0,
+  "wall_time_s": 304.38,
+  "finish_reason": "",
+  "final_message": "",
+  "transcript_path": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-8bit/02-pdf-parser/20260423-014653/_transcript.jsonl",
+  "gates": [
+    {
+      "gate_id": "search_quality",
+      "passed": true,
+      "detail": "16/23 reachable, need 3"
+    },
+    {
+      "gate_id": "poc_syntax",
+      "passed": true,
+      "detail": "compiled"
+    },
+    {
+      "gate_id": "poc_runs",
+      "passed": true,
+      "detail": "exit=0 (want 0)"
+    },
+    {
+      "gate_id": "poc_output_has_text",
+      "passed": false,
+      "detail": "matched 0/1, need 1"
+    },
+    {
+      "gate_id": "readme_addresses_portability",
+      "passed": true,
+      "detail": "hit: ['linux', 'cross-platform', 'no system']"
+    }
+  ],
+  "completion": true,
+  "score": 0.8,
+  "aborted": "max_turns"
+}

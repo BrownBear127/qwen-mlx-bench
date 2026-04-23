@@ -1,0 +1,56 @@
+id: 04-md-to-epub
+domain: writing
+fail_mode_probe: tool_selection
+prompt: |
+  Find a tool that can batch-convert a directory of Markdown files to a single EPUB
+  ebook. Write a minimal POC.
+
+  Setup the POC like this:
+    - Create 3 sample .md files in a `chapters/` subdir (chapter1.md, chapter2.md, chapter3.md)
+      with a few paragraphs of placeholder content each
+    - Convert all 3 into a single book.epub
+    - Print the output file path and size
+
+  Constraints:
+    - If your POC needs third-party Python packages, write a requirements.txt file (one per line) so the verifier can install them
+    - Output: poc.py + README.md
+    - poc.py must be runnable with: uv run --no-project --with <lib> python poc.py
+    - May shell out to a CLI tool (pandoc etc.) but must check it's installed first and provide install instructions on missing
+    - book.epub must actually exist after running, with size > 1KB
+
+max_turns: 30
+wall_time_limit_s: 480
+
+gates:
+  - id: search_quality
+    type: url_reachable
+    required_count: 3
+    extract_from: full_transcript
+    timeout_per_url: 5
+
+  - id: poc_syntax
+    type: py_compile
+    file: poc.py
+
+  - id: poc_runs
+    type: run_command
+    cmd_template: "uv run --no-project --with-requirements requirements.txt python poc.py"
+    fallback_cmd_template: "uv run --no-project python poc.py"
+    timeout_s: 240
+    expect_exit_code: 0
+
+  - id: epub_exists
+    type: run_command
+    cmd_template: "test -f book.epub && [ $(wc -c < book.epub) -gt 1024 ] && echo OK"
+    timeout_s: 5
+    expect_exit_code: 0
+
+  - id: readme_explains_choice
+    type: keyword_any
+    keywords: [pandoc, ebook, epub, conversion, "command line", install]
+    file: README.md
+    case_insensitive: true
+
+scoring:
+  total_gates: 5
+  pass_threshold: 4

@@ -1,0 +1,16 @@
+Write a minimal POC for a SQLite schema migration system using ONLY Python stdlib
+(no third-party libraries, no alembic, no sqlalchemy, no yoyo, etc.). Just `sqlite3`
+module and stdlib.
+
+Requirements:
+  - Maintain a `schema_migrations` table tracking applied migration ids
+  - Migrations are .sql files in a `migrations/` subdirectory, named like `001_init.sql`, `002_add_users.sql`
+  - Running poc.py applies any pending migrations in order, idempotently
+  - Include 2 example migration files for demo
+  - Output: poc.py + README.md (no extra files outside migrations/)
+
+Constraints:
+  - If your POC needs third-party Python packages, write a requirements.txt file (one per line) so the verifier can install them
+  - poc.py must be runnable with: python poc.py (NO uv extras, NO third-party deps)
+  - First run creates db + applies both migrations
+  - Second run prints "no pending migrations" (idempotent check)

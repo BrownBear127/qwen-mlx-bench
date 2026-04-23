@@ -1,0 +1,15 @@
+Find a Python RSS parsing library, then write a minimal POC that:
+  1. Fetches THESE 3 RSS feeds:
+     - https://hnrss.org/frontpage
+     - https://www.theverge.com/rss/index.xml
+     - https://feeds.arstechnica.com/arstechnica/index
+  2. Collects all entries from the last 24 hours (use the entry's published date)
+  3. Deduplicates entries that have the same normalized title (case-insensitive,
+     whitespace-collapsed) — keep only one of each
+  4. Prints the count of (raw entries, deduped entries) and the first 5 unique titles
+
+Constraints:
+  - If your POC needs third-party Python packages, write a requirements.txt file (one per line) so the verifier can install them
+  - Output: poc.py + README.md
+  - poc.py must be runnable with: uv run --no-project --with <lib> python poc.py
+  - Network errors on individual feeds should not crash the whole POC

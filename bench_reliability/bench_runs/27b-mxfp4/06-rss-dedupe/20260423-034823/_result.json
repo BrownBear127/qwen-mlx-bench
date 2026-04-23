@@ -1,0 +1,42 @@
+{
+  "model": "27b-mxfp4",
+  "topic_id": "06-rss-dedupe",
+  "sandbox_dir": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-mxfp4/06-rss-dedupe/20260423-034823",
+  "turns": 9,
+  "tool_calls": 8,
+  "tool_errors": 0,
+  "wall_time_s": 70.06,
+  "finish_reason": "stop",
+  "final_message": "All deliverables are in place and working:\n\n- **`poc.py`** — Fetches 3 RSS feeds via `feedparser`, filters entries from the last 24 hours, deduplicates by normalized title, and prints counts + first 5 titles. Network errors on individual feeds are caught gracefully.\n- **`requirements.txt`** — Lists `feedparser` as the sole dependency.\n- **`README.md`** — Documents the POC's purpose, dependencies, and usage.\n\nThe POC successfully ran, finding **44 raw entries** and **44 deduped entries** across the three feeds (no duplicates in this run).",
+  "transcript_path": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-mxfp4/06-rss-dedupe/20260423-034823/_transcript.jsonl",
+  "gates": [
+    {
+      "gate_id": "search_quality",
+      "passed": true,
+      "detail": "3/3 reachable, need 2"
+    },
+    {
+      "gate_id": "poc_syntax",
+      "passed": true,
+      "detail": "compiled"
+    },
+    {
+      "gate_id": "poc_runs",
+      "passed": true,
+      "detail": "exit=0 (want 0)"
+    },
+    {
+      "gate_id": "counts_printed",
+      "passed": false,
+      "detail": "matched 0/3, need 2"
+    },
+    {
+      "gate_id": "readme_explains_dedupe",
+      "passed": true,
+      "detail": "hit: ['normalize', 'dedupe', 'duplicate', 'case-insensitive', 'whitespace']"
+    }
+  ],
+  "completion": true,
+  "score": 0.8,
+  "aborted": ""
+}

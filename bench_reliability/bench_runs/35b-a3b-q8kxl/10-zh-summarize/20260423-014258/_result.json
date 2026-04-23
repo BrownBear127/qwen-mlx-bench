@@ -1,0 +1,42 @@
+{
+  "model": "35b-a3b-q8kxl",
+  "topic_id": "10-zh-summarize",
+  "sandbox_dir": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/35b-a3b-q8kxl/10-zh-summarize/20260423-014258",
+  "turns": 5,
+  "tool_calls": 4,
+  "tool_errors": 0,
+  "wall_time_s": 42.38,
+  "finish_reason": "stop",
+  "final_message": "The POC runs cleanly. Here's a summary:\n\n**`poc.py`** — A minimal extractive summarizer for Traditional Chinese that:\n1. Splits text into sentences on Chinese punctuation (。！？；)\n2. Scores each sentence using **character bigram TF-IDF** (no word tokenizer needed)\n3. Adds a small **position bonus** for sentences near the beginning/end\n4. Selects the top ~1/3 sentences, reassembles them in order, and truncates to ~100 chars\n\n**`README.md`** — Documents the approach and rationale.\n\n**Result**: The sample article (600+ chars) was summarized to **88 characters** — a coherent extractive summary covering traditional craftsmanship and Taiwanese cultural heritage, using only Python stdlib with zero network calls.",
+  "transcript_path": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/35b-a3b-q8kxl/10-zh-summarize/20260423-014258/_transcript.jsonl",
+  "gates": [
+    {
+      "gate_id": "search_quality",
+      "passed": false,
+      "detail": "0/0 reachable, need 1"
+    },
+    {
+      "gate_id": "poc_syntax",
+      "passed": true,
+      "detail": "compiled"
+    },
+    {
+      "gate_id": "poc_runs",
+      "passed": false,
+      "detail": "exit=127 (want 0) | last_stderr: /bin/sh: python: command not found"
+    },
+    {
+      "gate_id": "output_length_in_range",
+      "passed": false,
+      "detail": "matched 0/1, need 1"
+    },
+    {
+      "gate_id": "readme_justifies_method",
+      "passed": true,
+      "detail": "hit: ['extractive', 'tf-idf', 'frequency', 'n-gram', 'no network']"
+    }
+  ],
+  "completion": false,
+  "score": 0.4,
+  "aborted": ""
+}

@@ -1,0 +1,42 @@
+{
+  "model": "35b-a3b-dwq-vanilla",
+  "topic_id": "10-zh-summarize",
+  "sandbox_dir": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/35b-a3b-dwq-vanilla/10-zh-summarize/20260423-025223",
+  "turns": 16,
+  "tool_calls": 15,
+  "tool_errors": 0,
+  "wall_time_s": 68.34,
+  "finish_reason": "stop",
+  "final_message": "Done. Here's a summary of what was delivered:\n\n**`poc.py`** — A fully offline, stdlib-only Traditional Chinese extractive summarizer that:\n- Embeds a 521-char 繁體中文 article about traditional crafts and food culture\n- Splits text into sentences on `。！？；` delimiters\n- Ranks sentences using **character bigram TF-IDF** (no tokenizer needed for Chinese)\n- Selects the top ~40% of sentences by score, preserving original order\n- Truncates to ~100 characters\n- Produces an 81-char summary within the 50–150 target range\n\n**`README.md`** — Explains the approach (sentence splitting → char bigram TF-IDF → top-k selection → truncation) and justifies why it's reasonable under the no-network constraint.",
+  "transcript_path": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/35b-a3b-dwq-vanilla/10-zh-summarize/20260423-025223/_transcript.jsonl",
+  "gates": [
+    {
+      "gate_id": "search_quality",
+      "passed": false,
+      "detail": "0/0 reachable, need 1"
+    },
+    {
+      "gate_id": "poc_syntax",
+      "passed": true,
+      "detail": "compiled"
+    },
+    {
+      "gate_id": "poc_runs",
+      "passed": false,
+      "detail": "exit=127 (want 0) | last_stderr: /bin/sh: python: command not found"
+    },
+    {
+      "gate_id": "output_length_in_range",
+      "passed": false,
+      "detail": "matched 0/1, need 1"
+    },
+    {
+      "gate_id": "readme_justifies_method",
+      "passed": true,
+      "detail": "hit: ['extractive', 'tf-idf', 'frequency', 'n-gram', 'stdlib', 'no network']"
+    }
+  ],
+  "completion": false,
+  "score": 0.4,
+  "aborted": ""
+}

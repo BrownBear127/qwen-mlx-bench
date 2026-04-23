@@ -1,0 +1,42 @@
+{
+  "model": "27b-mxfp8",
+  "topic_id": "07-fragile-install-fallback",
+  "sandbox_dir": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-mxfp8/07-fragile-install-fallback/20260423-031710",
+  "turns": 8,
+  "tool_calls": 7,
+  "tool_errors": 0,
+  "wall_time_s": 286.07,
+  "finish_reason": "stop",
+  "final_message": "All deliverables are in place. Here's a summary:\n\n---\n\n**Deliverables:**\n\n| File | Purpose |\n|---|---|\n| `poc.py` | Main script — runs with `python poc.py`, handles its own installs, never crashes |\n| `requirements.txt` | Lists `piper-tts` and `pyttsx3` for optional pre-installation |\n| `README.md` | Documents the 3-tier fallback strategy |\n\n**Fallback strategy (3 tiers):**\n\n1. **`piper-tts`** — Best quality, offline neural TTS. May fail on Apple Silicon (no wheels) or without eSpeak-ng.\n2. **`pyttsx3`** — Uses OS-level TTS (SAPI5/NSSpeech/eSpeak). More portable, no model download needed.\n3. **Fallback message** — Prints `would synthesize: hello world reliability test` if neither library is available.\n\n**Test result:** On this macOS environment, `piper-tts` was importable but synthesis failed (voice model issue), so it correctly fell back to `pyttsx3`, producing `output.wav` (105 KB, AIFF-C format). The script never crashed.",
+  "transcript_path": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-mxfp8/07-fragile-install-fallback/20260423-031710/_transcript.jsonl",
+  "gates": [
+    {
+      "gate_id": "search_quality",
+      "passed": false,
+      "detail": "0/0 reachable, need 2"
+    },
+    {
+      "gate_id": "poc_syntax",
+      "passed": true,
+      "detail": "compiled"
+    },
+    {
+      "gate_id": "poc_does_not_crash",
+      "passed": false,
+      "detail": "exit=127 (want 0) | last_stderr: /bin/sh: python: command not found"
+    },
+    {
+      "gate_id": "backend_reported",
+      "passed": false,
+      "detail": "matched 0/4, need 1"
+    },
+    {
+      "gate_id": "readme_explains_fallback",
+      "passed": true,
+      "detail": "hit: ['fallback', 'graceful degradation', 'try']"
+    }
+  ],
+  "completion": false,
+  "score": 0.4,
+  "aborted": ""
+}

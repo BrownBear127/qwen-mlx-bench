@@ -1,0 +1,42 @@
+{
+  "model": "35b-a3b-q8kxl",
+  "topic_id": "08-llm-serving-table",
+  "sandbox_dir": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/35b-a3b-q8kxl/08-llm-serving-table/20260423-014025",
+  "turns": 35,
+  "tool_calls": 35,
+  "tool_errors": 3,
+  "wall_time_s": 95.67,
+  "finish_reason": "",
+  "final_message": "",
+  "transcript_path": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/35b-a3b-q8kxl/08-llm-serving-table/20260423-014025/_transcript.jsonl",
+  "gates": [
+    {
+      "gate_id": "summary_md_exists",
+      "passed": true,
+      "detail": "matched 2/2, need 0"
+    },
+    {
+      "gate_id": "table_has_rows",
+      "passed": false,
+      "detail": "summary.md missing"
+    },
+    {
+      "gate_id": "urls_in_table",
+      "passed": true,
+      "detail": "11/14 reachable, need 4"
+    },
+    {
+      "gate_id": "notes_exists",
+      "passed": false,
+      "detail": "notes.md missing"
+    },
+    {
+      "gate_id": "honest_unknowns",
+      "passed": true,
+      "detail": "matched 2/3, need 0"
+    }
+  ],
+  "completion": true,
+  "score": 0.6,
+  "aborted": "max_turns"
+}

@@ -1,0 +1,42 @@
+{
+  "model": "27b-mxfp4",
+  "topic_id": "07-fragile-install-fallback",
+  "sandbox_dir": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-mxfp4/07-fragile-install-fallback/20260423-034939",
+  "turns": 16,
+  "tool_calls": 15,
+  "tool_errors": 0,
+  "wall_time_s": 226.55,
+  "finish_reason": "stop",
+  "final_message": "All deliverables are in place. Here's a summary:\n\n---\n\n**Deliverables:**\n\n| File | Purpose |\n|---|---|\n| `poc.py` | Main POC script — runnable with `python poc.py` |\n| `requirements.txt` | Lists `piper-tts` and `pyttsx3` for optional pre-install |\n| `README.md` | Documents the fallback strategy and design decisions |\n\n**Fallback chain tested and working:**\n\n1. **Tier 1 — `piper-tts`**: Was already installed in this environment but failed to download a voice model (missing `download` submodule). Gracefully fell through.\n2. **Tier 2 — `pyttsx3`**: Successfully synthesized \"hello world reliability test\" to `output.wav` (105KB AIFF-C audio).\n3. **Tier 3 — Print-only**: Would print `would synthesize: hello world reliability test` if both tiers failed.\n\nThe script **never crashes** — every step is wrapped in try/except, and it always produces clear output about which backend was used and where the output is.",
+  "transcript_path": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-mxfp4/07-fragile-install-fallback/20260423-034939/_transcript.jsonl",
+  "gates": [
+    {
+      "gate_id": "search_quality",
+      "passed": false,
+      "detail": "0/0 reachable, need 2"
+    },
+    {
+      "gate_id": "poc_syntax",
+      "passed": true,
+      "detail": "compiled"
+    },
+    {
+      "gate_id": "poc_does_not_crash",
+      "passed": false,
+      "detail": "exit=127 (want 0) | last_stderr: /bin/sh: python: command not found"
+    },
+    {
+      "gate_id": "backend_reported",
+      "passed": false,
+      "detail": "matched 0/4, need 1"
+    },
+    {
+      "gate_id": "readme_explains_fallback",
+      "passed": true,
+      "detail": "hit: ['fallback', 'graceful degradation', 'try', 'except']"
+    }
+  ],
+  "completion": false,
+  "score": 0.4,
+  "aborted": ""
+}
