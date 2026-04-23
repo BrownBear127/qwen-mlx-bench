@@ -1,0 +1,42 @@
+{
+  "model": "27b-mxfp8",
+  "topic_id": "01-vector-db",
+  "sandbox_dir": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-mxfp8/01-vector-db/20260423-025345",
+  "turns": 6,
+  "tool_calls": 5,
+  "tool_errors": 0,
+  "wall_time_s": 182.55,
+  "finish_reason": "stop",
+  "final_message": "All files are in place. Here's a summary:\n\n---\n\n**Deliverables:**\n\n| File | Purpose |\n|---|---|\n| `poc.py` | Runnable POC — ingests 5 sentences into an in-memory Qdrant collection and queries for top-3 similar results |\n| `README.md` | Explains library choice (Qdrant), why (native Apple Silicon support, in-memory mode), and distance metric (cosine similarity) |\n| `requirements.txt` | Lists `qdrant-client` and `sentence-transformers` |\n\n**Results for query *\"Where do animals go when seasons change?\"*:**\n\n1. **Score 0.6081** — \"Migratory species follow seasonal patterns.\"\n2. **Score 0.5062** — \"Birds fly south for the winter.\"\n3. **Score 0.2158** — \"The kitten purred contentedly.\"\n\nThe top-2 results are semantically correct (both relate to animal migration/seasonal movement), and the cosine similarity scores reflect the expected ranking.",
+  "transcript_path": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-mxfp8/01-vector-db/20260423-025345/_transcript.jsonl",
+  "gates": [
+    {
+      "gate_id": "search_quality",
+      "passed": false,
+      "detail": "0/0 reachable, need 3"
+    },
+    {
+      "gate_id": "poc_syntax",
+      "passed": true,
+      "detail": "compiled"
+    },
+    {
+      "gate_id": "poc_runs",
+      "passed": false,
+      "detail": "exit=1 (want 0) | last_stderr: ModuleNotFoundError: No module named 'qdrant_client'"
+    },
+    {
+      "gate_id": "poc_output_shape",
+      "passed": false,
+      "detail": "matched 0/3, need 2"
+    },
+    {
+      "gate_id": "readme_explains_metric",
+      "passed": true,
+      "detail": "hit: ['cosine']"
+    }
+  ],
+  "completion": false,
+  "score": 0.4,
+  "aborted": ""
+}

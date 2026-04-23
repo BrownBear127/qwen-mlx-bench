@@ -1,0 +1,42 @@
+{
+  "model": "27b-mxfp8",
+  "topic_id": "02-pdf-parser",
+  "sandbox_dir": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-mxfp8/02-pdf-parser/20260423-025648",
+  "turns": 17,
+  "tool_calls": 16,
+  "tool_errors": 0,
+  "wall_time_s": 229.74,
+  "finish_reason": "stop",
+  "final_message": "All three files are present. Here's a summary:\n\n---\n\n**Deliverables:**\n\n| File | Purpose |\n|---|---|\n| `poc.py` | Downloads a public PDF, extracts first-page text, prints first 500 chars |\n| `requirements.txt` | Lists `pypdf` as the sole dependency |\n| `README.md` | Explains why `pypdf` is cross-platform (pure Python, no C extensions, no system commands, no macOS-only frameworks) |\n\n**Library chosen: `pypdf`** — a 100% pure-Python PDF library with zero compiled code, zero external binaries, and zero platform-specific dependencies. It runs identically on macOS, Linux, and Windows.\n\n**Run command:** `uv run --no-project --with pypdf python poc.py`",
+  "transcript_path": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-mxfp8/02-pdf-parser/20260423-025648/_transcript.jsonl",
+  "gates": [
+    {
+      "gate_id": "search_quality",
+      "passed": true,
+      "detail": "17/21 reachable, need 3"
+    },
+    {
+      "gate_id": "poc_syntax",
+      "passed": true,
+      "detail": "compiled"
+    },
+    {
+      "gate_id": "poc_runs",
+      "passed": true,
+      "detail": "exit=0 (want 0)"
+    },
+    {
+      "gate_id": "poc_output_has_text",
+      "passed": false,
+      "detail": "matched 0/1, need 1"
+    },
+    {
+      "gate_id": "readme_addresses_portability",
+      "passed": true,
+      "detail": "hit: ['linux', 'cross-platform', 'no system']"
+    }
+  ],
+  "completion": true,
+  "score": 0.8,
+  "aborted": ""
+}

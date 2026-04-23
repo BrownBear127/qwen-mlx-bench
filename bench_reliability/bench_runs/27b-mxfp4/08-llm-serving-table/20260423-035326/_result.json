@@ -1,0 +1,42 @@
+{
+  "model": "27b-mxfp4",
+  "topic_id": "08-llm-serving-table",
+  "sandbox_dir": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-mxfp4/08-llm-serving-table/20260423-035326",
+  "turns": 18,
+  "tool_calls": 46,
+  "tool_errors": 4,
+  "wall_time_s": 372.86,
+  "finish_reason": "stop",
+  "final_message": "Both files are correct. Let me verify the constraints are met:\n\n- **5 rows** ✅ (llama.cpp, Ollama, MLX, llamafile, llama-cpp-python)\n- **All required columns present** ✅ (Name, Language, Apple Silicon support, Quantization formats supported, Tool calling?, Repo URL)\n- **At least 3 support Apple Silicon** ✅ (all 5 support Apple Silicon)\n- **All repo URLs are real and reachable** ✅ (verified via GitHub fetches)\n- **No POC code needed** ✅\n- **notes.md has 3-5 sentences** ✅ (5 sentences in one paragraph)\n\nNo third-party Python packages were needed for this research task, so no `requirements.txt` is necessary.\n\n**Summary of deliverables:**\n\n- **`summary.md`** — Markdown table with 5 local LLM serving frameworks, covering all required columns\n- **`notes.md`** — One-paragraph summary (5 sentences) of the tradeoffs across the chosen frameworks\n\nThe table covers the ecosystem from the foundational engine (llama.cpp) through its most popular wrappers (Ollama, llama-cpp-python), the Apple-native framework (MLX), and the single-file distribution approach (llamafile).",
+  "transcript_path": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-mxfp4/08-llm-serving-table/20260423-035326/_transcript.jsonl",
+  "gates": [
+    {
+      "gate_id": "summary_md_exists",
+      "passed": true,
+      "detail": "matched 2/2, need 0"
+    },
+    {
+      "gate_id": "table_has_rows",
+      "passed": true,
+      "detail": "hit: ['llama.cpp', 'mlx', 'ollama']"
+    },
+    {
+      "gate_id": "urls_in_table",
+      "passed": true,
+      "detail": "10/10 reachable, need 4"
+    },
+    {
+      "gate_id": "notes_exists",
+      "passed": true,
+      "detail": "hit: ['performance', 'support']"
+    },
+    {
+      "gate_id": "honest_unknowns",
+      "passed": true,
+      "detail": "matched 1/3, need 0"
+    }
+  ],
+  "completion": true,
+  "score": 1.0,
+  "aborted": ""
+}

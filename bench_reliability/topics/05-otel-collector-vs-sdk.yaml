@@ -1,0 +1,55 @@
+id: 05-otel-collector-vs-sdk
+domain: observability
+fail_mode_probe: misleading_same_name_disambiguation
+prompt: |
+  In OpenTelemetry the terms "Collector" and "SDK" refer to two very different
+  components that beginners often confuse. Research the distinction, then write a
+  minimal Python POC that uses the OpenTelemetry SDK (NOT the Collector) to emit a
+  single trace span with one attribute, and exports it to the console (no network
+  calls, no Collector running).
+
+  Requirements:
+    - Output: poc.py + README.md
+    - poc.py must be runnable with: uv run --no-project --with <libs> python poc.py
+    - Print the exported span JSON to stdout
+    - README.md must clearly distinguish what the Collector does vs what the SDK does
+      in its own words (>=3 sentences each)
+
+max_turns: 32
+wall_time_limit_s: 540
+
+gates:
+  - id: search_quality
+    type: url_reachable
+    required_count: 3
+    extract_from: full_transcript
+    timeout_per_url: 5
+
+  - id: poc_syntax
+    type: py_compile
+    file: poc.py
+
+  - id: poc_runs
+    type: run_command
+    cmd_template: "uv run --no-project --with opentelemetry-api --with opentelemetry-sdk python poc.py"
+    timeout_s: 240
+    expect_exit_code: 0
+
+  - id: trace_emitted
+    type: regex_any
+    patterns:
+      - "(?i)span"
+      - "(?i)trace.id"
+      - "(?i)resource"
+    against: poc_stdout
+    required_matches: 2
+
+  - id: readme_disambiguates
+    type: keyword_any
+    keywords: [collector, sdk, "in-process", agent, exporter, "vendor-agnostic", receivers]
+    file: README.md
+    case_insensitive: true
+
+scoring:
+  total_gates: 5
+  pass_threshold: 4

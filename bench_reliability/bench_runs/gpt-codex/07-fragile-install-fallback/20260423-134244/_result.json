@@ -1,0 +1,42 @@
+{
+  "model": "gpt-codex",
+  "topic_id": "07-fragile-install-fallback",
+  "sandbox_dir": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/gpt-codex/07-fragile-install-fallback/20260423-134244",
+  "turns": 5,
+  "tool_calls": 14,
+  "tool_errors": 0,
+  "wall_time_s": 376.8,
+  "finish_reason": "",
+  "final_message": "xpected_ids\n\n                    start_phoneme_id_idx = phoneme_id_idx\n                    for phoneme_id in ids_to_check:\n                        if phoneme_id_idx >= len(phoneme_ids):\n                            # Ran out of phoneme ids\n                            alignment_failed = True\n                            break\n\n                        if phoneme_id != phoneme_ids[phoneme_id_idx]:\n                            # Bad alignment\n                            alignment_failed = True\n                            break\n\n                        phoneme_id_idx += 1\n\n                    if alignment_failed:\n                        break\n\n                    phoneme_alignments.append(\n                        PhonemeAlignment(\n                            phoneme=phoneme,\n                            phoneme_ids=ids_to_check,\n                            num_samples=sum(\n                                phoneme_id_samples[start_phoneme_id_idx:phoneme_id_idx]\n                            ),\n                        )\n                    )\n\n                if alignment_failed:\n                    phoneme_alignments = None\n                    _LOGGER.debug(\"Phoneme alignment failed\")\n\n            yield AudioChunk(\n                sample_rate=self.config.sample_rate,\n                sample_width=2,\n                sample_channels=1,\n                audio_float_array=audio,\n                phonemes=phonemes,\n                phoneme_ids=phoneme_ids,\n                phoneme_id_samples=phoneme_id_samples,\n                phoneme_alignments=phoneme_alignments,\n            )\n\n    def synthesize_wav(\n        self,\n        text: str,\n        wav_file: wave.Wave_write,\n        syn_config: Optional[SynthesisConfig] = None,\n        set_wav_format: bool = True,\n        include_alignments: bool = False,\n    ) -> Optional[list[PhonemeAlignment]]:\n        \"\"\"\n        Synthesize and write WAV audio from text.\n\n        :param text: Text to synthesize.\n        :param wav_file: WAV file writer.\n   ",
+  "transcript_path": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/gpt-codex/07-fragile-install-fallback/20260423-134244/_transcript.txt",
+  "gates": [
+    {
+      "gate_id": "search_quality",
+      "passed": false,
+      "detail": "0/0 reachable, need 2"
+    },
+    {
+      "gate_id": "poc_syntax",
+      "passed": true,
+      "detail": "compiled"
+    },
+    {
+      "gate_id": "poc_does_not_crash",
+      "passed": false,
+      "detail": "exit=127 (want 0) | last_stderr: /bin/sh: python: command not found"
+    },
+    {
+      "gate_id": "backend_reported",
+      "passed": false,
+      "detail": "matched 0/4, need 1"
+    },
+    {
+      "gate_id": "readme_explains_fallback",
+      "passed": true,
+      "detail": "hit: ['fallback']"
+    }
+  ],
+  "completion": false,
+  "score": 0.4,
+  "aborted": ""
+}

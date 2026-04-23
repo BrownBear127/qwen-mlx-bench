@@ -1,0 +1,42 @@
+{
+  "model": "27b-mxfp4",
+  "topic_id": "10-zh-summarize",
+  "sandbox_dir": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-mxfp4/10-zh-summarize/20260423-040616",
+  "turns": 6,
+  "tool_calls": 5,
+  "tool_errors": 0,
+  "wall_time_s": 115.85,
+  "finish_reason": "stop",
+  "final_message": "Everything is in place. Here's a summary:\n\n**Deliverables:**\n\n- **`poc.py`** — A fully offline, stdlib-only extractive summarizer for Traditional Chinese text. It:\n  - Embeds a 706-character 繁體中文 article covering design, culture, writing, craftsmanship, language, and food\n  - Segments sentences on Chinese punctuation (`。！？`)\n  - Computes TF-IDF on character bigrams to rank sentences by informativeness\n  - Greedily selects top-scoring sentences until the output is in the 50–150 char range\n  - Produces a **133-character summary** (within spec)\n  - Uses zero external dependencies — only `re`, `math`, `collections.Counter`\n\n- **`README.md`** — Documents the approach, explains why TF-IDF on character bigrams is a reasonable heuristic under the no-network constraint, and acknowledges limitations.",
+  "transcript_path": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-mxfp4/10-zh-summarize/20260423-040616/_transcript.jsonl",
+  "gates": [
+    {
+      "gate_id": "search_quality",
+      "passed": false,
+      "detail": "0/0 reachable, need 1"
+    },
+    {
+      "gate_id": "poc_syntax",
+      "passed": true,
+      "detail": "compiled"
+    },
+    {
+      "gate_id": "poc_runs",
+      "passed": false,
+      "detail": "exit=127 (want 0) | last_stderr: /bin/sh: python: command not found"
+    },
+    {
+      "gate_id": "output_length_in_range",
+      "passed": false,
+      "detail": "matched 0/1, need 1"
+    },
+    {
+      "gate_id": "readme_justifies_method",
+      "passed": true,
+      "detail": "hit: ['extractive', 'tf-idf', 'frequency', 'heuristic', 'n-gram', 'stdlib', 'no network', 'offline']"
+    }
+  ],
+  "completion": false,
+  "score": 0.4,
+  "aborted": ""
+}

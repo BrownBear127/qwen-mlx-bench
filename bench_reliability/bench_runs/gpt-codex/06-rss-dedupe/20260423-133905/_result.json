@@ -1,0 +1,42 @@
+{
+  "model": "gpt-codex",
+  "topic_id": "06-rss-dedupe",
+  "sandbox_dir": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/gpt-codex/06-rss-dedupe/20260423-133905",
+  "turns": 6,
+  "tool_calls": 9,
+  "tool_errors": 0,
+  "wall_time_s": 202.64,
+  "finish_reason": "",
+  "final_message": "serDict) -> datetime | None:\n+    published = getattr(entry, \"published_parsed\", None)\n+    if not published:\n+        return None\n+\n+    try:\n+        return datetime(\n+            published.tm_year,\n+            published.tm_mon,\n+            published.tm_mday,\n+            published.tm_hour,\n+            published.tm_min,\n+            published.tm_sec,\n+            tzinfo=timezone.utc,\n+        )\n+    except ValueError:\n+        return None\n+\n+\n+def fetch_feed(url: str) -> bytes:\n+    request = Request(url, headers=REQUEST_HEADERS)\n+    with urlopen(request, timeout=REQUEST_TIMEOUT_SECONDS) as response:\n+        return response.read()\n+\n+\n+def collect_recent_entries(feed_url: str, cutoff: datetime) -> list[FeedEntry]:\n+    try:\n+        raw_feed = fetch_feed(feed_url)\n+    except (HTTPError, URLError, TimeoutError, OSError) as exc:\n+        print(f\"[warn] failed to fetch {feed_url}: {exc}\", file=sys.stderr)\n+        return []\n+\n+    parsed_feed = feedparser.parse(raw_feed)\n+    if getattr(parsed_feed, \"bozo\", False):\n+        exc = getattr(parsed_feed, \"bozo_exception\", None)\n+        if exc is not None:\n+            print(f\"[warn] parsed {feed_url} with issues: {exc}\", file=sys.stderr)\n+\n+    recent_entries: list[FeedEntry] = []\n+    for entry in parsed_feed.entries:\n+        title = str(getattr(entry, \"title\", \"\")).strip()\n+        if not title:\n+            continue\n+\n+        entry_published_at = published_at(entry)\n+        if entry_published_at is None or entry_published_at < cutoff:\n+            continue\n+\n+        recent_entries.append(\n+            FeedEntry(\n+                title=title,\n+                normalized_title=normalize_title(title),\n+                published_at=entry_published_at,\n+                source_url=feed_url,\n+            )\n+        )\n+\n+    return recent_entries\n+\n+\n+def dedupe_entries(entries: Iterable[FeedEntry]) -> list[FeedEntry]:\n+    unique_by_title: dict[str, FeedEntry] = {}\n+    for entry in sorted(entries, key=lambda item",
+  "transcript_path": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/gpt-codex/06-rss-dedupe/20260423-133905/_transcript.txt",
+  "gates": [
+    {
+      "gate_id": "search_quality",
+      "passed": true,
+      "detail": "5/9 reachable, need 2"
+    },
+    {
+      "gate_id": "poc_syntax",
+      "passed": true,
+      "detail": "compiled"
+    },
+    {
+      "gate_id": "poc_runs",
+      "passed": true,
+      "detail": "exit=0 (want 0)"
+    },
+    {
+      "gate_id": "counts_printed",
+      "passed": false,
+      "detail": "matched 0/3, need 2"
+    },
+    {
+      "gate_id": "readme_explains_dedupe",
+      "passed": true,
+      "detail": "hit: ['normalize', 'dedupe', 'duplicate', 'whitespace']"
+    }
+  ],
+  "completion": true,
+  "score": 0.8,
+  "aborted": ""
+}

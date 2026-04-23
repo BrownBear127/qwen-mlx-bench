@@ -1,0 +1,69 @@
+id: 01-vector-db
+domain: data
+fail_mode_probe: basic_competence
+prompt: |
+  Find a vector database that runs on macOS Apple Silicon. Write a minimal proof-of-concept
+  that ingests these 5 sentences and runs a similarity query, returning the top-3 most similar
+  to a query sentence.
+
+  Sentences to ingest:
+    1. The cat sat on the mat.
+    2. A dog barked at the mailman.
+    3. Birds fly south for the winter.
+    4. The kitten purred contentedly.
+    5. Migratory species follow seasonal patterns.
+
+  Query: "Where do animals go when seasons change?"
+
+  Constraints:
+    - If your POC needs third-party Python packages, write a requirements.txt file (one per line) so the verifier can install them
+    - Output two files in your working directory: poc.py and README.md
+    - poc.py must be runnable with: uv run --with <library> python poc.py
+    - README.md must explain: what library you chose, why, and what distance metric is used
+    - The POC must print the top-3 results with their similarity scores
+    - Total work should fit in <15 tool calls
+
+max_turns: 30
+wall_time_limit_s: 480
+
+gates:
+  - id: search_quality
+    description: At least 3 reachable URLs in response (real vector DB sources)
+    type: url_reachable
+    required_count: 3
+    extract_from: full_transcript
+    timeout_per_url: 5
+
+  - id: poc_syntax
+    description: poc.py is syntactically valid Python
+    type: py_compile
+    file: poc.py
+
+  - id: poc_runs
+    description: POC executes successfully under uv
+    type: run_command
+    cmd_template: "uv run --no-project --with-requirements requirements_inferred.txt python poc.py"
+    fallback_cmd_template: "uv run --no-project python poc.py"
+    timeout_s: 180
+    expect_exit_code: 0
+
+  - id: poc_output_shape
+    description: POC output mentions ranking/score concepts
+    type: regex_any
+    patterns:
+      - "(?i)top[ -]?3"
+      - "(?i)(score|distance|similarity)"
+      - "[0-9]+\\.[0-9]+"  # numeric scores
+    against: poc_stdout
+    required_matches: 2
+
+  - id: readme_explains_metric
+    description: README mentions a real distance metric name
+    type: keyword_any
+    keywords: [cosine, euclidean, "dot product", l2, manhattan]
+    file: README.md
+    case_insensitive: true
+
+scoring:
+  total_gates: 5
+  pass_threshold: 4  # need 4/5 for "completion"

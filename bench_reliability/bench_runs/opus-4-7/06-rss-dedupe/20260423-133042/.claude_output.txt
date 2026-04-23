@@ -1,0 +1,12 @@
+The POC runs successfully. It fetched 47 entries across the three feeds (20 from HN, 10 from The Verge, 17 from Ars Technica), all 47 were unique after deduplication (no cross-feed title collisions today), and it printed the first 5 titles.
+
+**Files created:**
+- `requirements.txt` — lists `feedparser` as the sole dependency
+- `poc.py` — fetches feeds, filters to last 24h, deduplicates by normalized title, prints summary
+- `README.md` — usage instructions and explanation
+
+**Key design choices:**
+- **feedparser** — the de facto Python RSS/Atom library, handles both formats and tolerates malformed XML
+- Network errors on individual feeds are caught and logged without crashing
+- Title normalization: lowercase + whitespace collapse via `re.sub(r"\s+", " ", ...)`
+- Runnable as specified: `uv run --no-project --with feedparser python poc.py`

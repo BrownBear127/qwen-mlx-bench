@@ -1,0 +1,59 @@
+id: 06-rss-dedupe
+domain: research
+fail_mode_probe: multi_step_integration
+prompt: |
+  Find a Python RSS parsing library, then write a minimal POC that:
+    1. Fetches THESE 3 RSS feeds:
+       - https://hnrss.org/frontpage
+       - https://www.theverge.com/rss/index.xml
+       - https://feeds.arstechnica.com/arstechnica/index
+    2. Collects all entries from the last 24 hours (use the entry's published date)
+    3. Deduplicates entries that have the same normalized title (case-insensitive,
+       whitespace-collapsed) — keep only one of each
+    4. Prints the count of (raw entries, deduped entries) and the first 5 unique titles
+
+  Constraints:
+    - If your POC needs third-party Python packages, write a requirements.txt file (one per line) so the verifier can install them
+    - Output: poc.py + README.md
+    - poc.py must be runnable with: uv run --no-project --with <lib> python poc.py
+    - Network errors on individual feeds should not crash the whole POC
+
+max_turns: 35
+wall_time_limit_s: 540
+
+gates:
+  - id: search_quality
+    type: url_reachable
+    required_count: 2
+    extract_from: full_transcript
+    timeout_per_url: 5
+
+  - id: poc_syntax
+    type: py_compile
+    file: poc.py
+
+  - id: poc_runs
+    type: run_command
+    cmd_template: "uv run --no-project --with feedparser python poc.py"
+    fallback_cmd_template: "uv run --no-project python poc.py"
+    timeout_s: 180
+    expect_exit_code: 0
+
+  - id: counts_printed
+    type: regex_any
+    patterns:
+      - "(?i)raw[: ]+\\d+"
+      - "(?i)dedupe?d?[: ]+\\d+"
+      - "\\d+\\s*(entries|items|articles)"
+    against: poc_stdout
+    required_matches: 2
+
+  - id: readme_explains_dedupe
+    type: keyword_any
+    keywords: [normalize, dedupe, duplicate, "case-insensitive", whitespace]
+    file: README.md
+    case_insensitive: true
+
+scoring:
+  total_gates: 5
+  pass_threshold: 4

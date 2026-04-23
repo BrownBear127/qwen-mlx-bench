@@ -1,0 +1,42 @@
+{
+  "model": "27b-mxfp8",
+  "topic_id": "08-llm-serving-table",
+  "sandbox_dir": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-mxfp8/08-llm-serving-table/20260423-032156",
+  "turns": 15,
+  "tool_calls": 23,
+  "tool_errors": 1,
+  "wall_time_s": 358.01,
+  "finish_reason": "stop",
+  "final_message": "Both files look good. Let me verify the constraints are met:\n\n- ✅ **6 rows** (≥5 required)\n- ✅ **All required columns** present: Name, Language, Apple Silicon support, Quantization formats supported, Tool calling?, Repo URL\n- ✅ **At least 3 frameworks support Apple Silicon**: llama.cpp, Ollama, MLX, llamafile, vLLM (5 out of 6)\n- ✅ **All repo URLs are real and reachable** (verified by fetching each GitHub page)\n- ✅ **No POC code needed** (as stated in constraints)\n- ✅ **No third-party Python packages needed** (no requirements.txt necessary)\n- ✅ **notes.md** contains one paragraph with 5 sentences summarizing tradeoffs\n\n**Summary of deliverables:**\n\n- **`summary.md`** — Markdown table with 6 local LLM serving frameworks, covering llama.cpp, Ollama, MLX/MLX-LM, llamafile, vLLM, and SGLang, with all required columns filled.\n- **`notes.md`** — One-paragraph summary (5 sentences) covering the key tradeoffs: ease of use vs. hardware breadth, quantization granularity, tool calling support, and the distinction between Apple Silicon-optimized tools (llama.cpp, MLX, llamafile) vs. GPU-cluster engines (vLLM, SGLang).",
+  "transcript_path": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-mxfp8/08-llm-serving-table/20260423-032156/_transcript.jsonl",
+  "gates": [
+    {
+      "gate_id": "summary_md_exists",
+      "passed": true,
+      "detail": "matched 2/2, need 0"
+    },
+    {
+      "gate_id": "table_has_rows",
+      "passed": true,
+      "detail": "hit: ['llama.cpp', 'mlx', 'vllm', 'ollama']"
+    },
+    {
+      "gate_id": "urls_in_table",
+      "passed": true,
+      "detail": "6/6 reachable, need 4"
+    },
+    {
+      "gate_id": "notes_exists",
+      "passed": true,
+      "detail": "hit: ['tradeoff', 'performance', 'ease', 'support']"
+    },
+    {
+      "gate_id": "honest_unknowns",
+      "passed": true,
+      "detail": "matched 1/3, need 0"
+    }
+  ],
+  "completion": true,
+  "score": 1.0,
+  "aborted": ""
+}

@@ -1,0 +1,42 @@
+{
+  "model": "gpt-codex",
+  "topic_id": "08-llm-serving-table",
+  "sandbox_dir": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/gpt-codex/08-llm-serving-table/20260423-134901",
+  "turns": 6,
+  "tool_calls": 12,
+  "tool_errors": 0,
+  "wall_time_s": 235.55,
+  "finish_reason": "",
+  "final_message": "ce tuning and broad quantization coverage, which is attractive for laptop and edge deployments, but they ask more from the operator in exchange for that control. MLC LLM stands out when the same model needs to span macOS, mobile, browser, and server-style deployment, although its compile-and-package workflow is more opinionated than the simpler runtimes. MLX-LM is the most Apple-native option in this set and fits well for Apple Silicon experimentation, but its own server documentation describes the HTTP server as basic rather than production-oriented.\ndiff --git a/bench_reliability/bench_runs/gpt-codex/08-llm-serving-table/20260423-134901/summary.md b/bench_reliability/bench_runs/gpt-codex/08-llm-serving-table/20260423-134901/summary.md\nnew file mode 100644\nindex 0000000000000000000000000000000000000000..fe6726a59f9c513f4c85a643f77070ff82443b2d\n--- /dev/null\n+++ b/bench_reliability/bench_runs/gpt-codex/08-llm-serving-table/20260423-134901/summary.md\n@@ -0,0 +1,10 @@\n+# Local LLM Serving Frameworks\n+\n+| Name | Language | Apple Silicon support | Quantization formats supported | Tool calling? | Repo URL |\n+| --- | --- | --- | --- | --- | --- |\n+| llama.cpp | C/C++ | Yes | GGUF; 1.5-bit, 2-bit, 3-bit, 4-bit, 5-bit, 6-bit, 8-bit integer quantization | Yes | https://github.com/ggml-org/llama.cpp |\n+| Ollama | Go | Yes | `q8_0`, `q4_K_S`, `q4_K_M` | Yes | https://github.com/ollama/ollama |\n+| LocalAI | Go | Yes | Backend-dependent; README examples include GGUF `q4_k_m` and `Q8_0` | Yes | https://github.com/mudler/LocalAI |\n+| MLC LLM | Python/C++ | Yes | `q0f16`, `q0f32`, `q3f16_1`, `q4f16_1`, `q4f32_1`, `q4f16_awq`, `e4m3_e4m3_f16`, `e5m2_e5m2_f16` | Yes | https://github.com/mlc-ai/mlc-llm |\n+| mistral.rs | Rust | Yes | UQFF, GGUF (2-8 bit), GPTQ, AWQ, HQQ, FP8, BNB, ISQ | Yes | https://github.com/EricLBuehler/mistral.rs |\n+| MLX-LM | Python | Yes | MLX quantized checkpoints; 4-bit is explicitly documented | ? | https://github.com/ml-explore/mlx-lm |\n\ntokens used\n234,233\n",
+  "transcript_path": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/gpt-codex/08-llm-serving-table/20260423-134901/_transcript.txt",
+  "gates": [
+    {
+      "gate_id": "summary_md_exists",
+      "passed": true,
+      "detail": "matched 2/2, need 0"
+    },
+    {
+      "gate_id": "table_has_rows",
+      "passed": true,
+      "detail": "hit: ['llama.cpp', 'mlx', 'ollama', 'mistral.rs']"
+    },
+    {
+      "gate_id": "urls_in_table",
+      "passed": true,
+      "detail": "17/24 reachable, need 4"
+    },
+    {
+      "gate_id": "notes_exists",
+      "passed": true,
+      "detail": "hit: ['performance']"
+    },
+    {
+      "gate_id": "honest_unknowns",
+      "passed": true,
+      "detail": "matched 2/3, need 0"
+    }
+  ],
+  "completion": true,
+  "score": 1.0,
+  "aborted": ""
+}

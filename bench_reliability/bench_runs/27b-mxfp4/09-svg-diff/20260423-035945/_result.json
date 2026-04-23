@@ -1,0 +1,42 @@
+{
+  "model": "27b-mxfp4",
+  "topic_id": "09-svg-diff",
+  "sandbox_dir": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-mxfp4/09-svg-diff/20260423-035945",
+  "turns": 18,
+  "tool_calls": 17,
+  "tool_errors": 0,
+  "wall_time_s": 390.31,
+  "finish_reason": "stop",
+  "final_message": "All deliverables are in place. Here's a summary:\n\n## Summary\n\n**Files created:**\n- **`a.svg`** — SVG with a red circle (`r=\"50\"`, `fill=\"red\"`)\n- **`b.svg`** — SVG with a blue circle (`r=\"60\"`, `fill=\"blue\"`)\n- **`poc.py`** — Structural SVG diff tool using `xml.etree.ElementTree` (stdlib only)\n- **`README.md`** — Explains the approach and why it's better than text diff\n- **`requirements.txt`** — No third-party packages needed\n\n**How it works:** The POC parses both SVGs into XML trees, then recursively walks the trees comparing tags, attributes, and text content. Children are matched by tag name (not by line position), so it's immune to formatting differences like whitespace, attribute ordering, or indentation.\n\n**Output:** Correctly identifies 2 changes:\n1. `fill` changed: `'red'` → `'blue'`\n2. `r` changed: `'50'` → `'60'`",
+  "transcript_path": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-mxfp4/09-svg-diff/20260423-035945/_transcript.jsonl",
+  "gates": [
+    {
+      "gate_id": "search_quality",
+      "passed": false,
+      "detail": "1/1 reachable, need 2"
+    },
+    {
+      "gate_id": "poc_syntax",
+      "passed": true,
+      "detail": "compiled"
+    },
+    {
+      "gate_id": "poc_runs",
+      "passed": true,
+      "detail": "exit=0 (want 0)"
+    },
+    {
+      "gate_id": "diff_meaningful",
+      "passed": true,
+      "detail": "matched 2/3, need 2"
+    },
+    {
+      "gate_id": "readme_justifies_approach",
+      "passed": true,
+      "detail": "hit: ['structural', 'visual', 'semantic', 'xml', 'attribute', 'render']"
+    }
+  ],
+  "completion": true,
+  "score": 0.8,
+  "aborted": ""
+}

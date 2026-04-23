@@ -1,0 +1,6 @@
+Works perfectly. The POC:
+
+- **Parses** both SVGs as XML trees (stdlib only, no third-party deps)
+- **Matches** elements by structural path (`svg/circle`)
+- **Reports 3 semantic differences**: radius change (50→60), fill color (red→blue), stroke-width (2→4) — each with numeric deltas where applicable
+- No `requirements.txt` needed since it uses only `xml.etree.ElementTree` from the standard library

@@ -1,0 +1,42 @@
+{
+  "model": "27b-6bit",
+  "topic_id": "01-vector-db",
+  "sandbox_dir": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-6bit/01-vector-db/20260423-004022",
+  "turns": 9,
+  "tool_calls": 8,
+  "tool_errors": 0,
+  "wall_time_s": 103.35,
+  "finish_reason": "stop",
+  "final_message": "Everything is in place. Here's a summary:\n\n---\n\n**Library chosen:** **ChromaDB** (`chromadb`) — an embeddable, open-source vector database that runs natively on macOS Apple Silicon with zero infrastructure.\n\n**What the POC does:**\n1. Creates an in-memory ChromaDB collection with **cosine distance** metric.\n2. Ingests 5 sentences (ChromaDB auto-embeds them using its built-in `all-MiniLM-L6-v2` model).\n3. Runs a similarity query for *\"Where do animals go when seasons change?\"*\n4. Prints the top-3 results with similarity scores.\n\n**Results:**\n| Rank | Similarity | Sentence |\n|------|-----------|----------|\n| 1 | 0.6081 | Migratory species follow seasonal patterns. |\n| 2 | 0.5062 | Birds fly south for the winter. |\n| 3 | 0.2158 | The kitten purred contentedly. |\n\n**Files delivered:** `poc.py`, `README.md`, `requirements.txt`",
+  "transcript_path": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-6bit/01-vector-db/20260423-004022/_transcript.jsonl",
+  "gates": [
+    {
+      "gate_id": "search_quality",
+      "passed": true,
+      "detail": "11/14 reachable, need 3"
+    },
+    {
+      "gate_id": "poc_syntax",
+      "passed": true,
+      "detail": "compiled"
+    },
+    {
+      "gate_id": "poc_runs",
+      "passed": false,
+      "detail": "exit=1 (want 0) | last_stderr: ModuleNotFoundError: No module named 'chromadb'"
+    },
+    {
+      "gate_id": "poc_output_shape",
+      "passed": false,
+      "detail": "matched 0/3, need 2"
+    },
+    {
+      "gate_id": "readme_explains_metric",
+      "passed": true,
+      "detail": "hit: ['cosine', 'euclidean', 'l2']"
+    }
+  ],
+  "completion": false,
+  "score": 0.6,
+  "aborted": ""
+}

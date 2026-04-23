@@ -1,0 +1,42 @@
+{
+  "model": "27b-mxfp8",
+  "topic_id": "10-zh-summarize",
+  "sandbox_dir": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-mxfp8/10-zh-summarize/20260423-033224",
+  "turns": 9,
+  "tool_calls": 8,
+  "tool_errors": 0,
+  "wall_time_s": 231.75,
+  "finish_reason": "stop",
+  "final_message": "Everything works. Here's a summary of what was delivered:\n\n---\n\n**Deliverables: `poc.py` + `README.md`**\n\n**Approach**: Extractive summarization using **TF-IDF on character bigrams** — no network, no external dependencies, pure Python stdlib.\n\n**How it works**:\n1. **Sentence splitting** on Chinese punctuation (`。！？\\n`)\n2. **Bigram extraction** from each sentence (2-character sequences)\n3. **TF-IDF scoring** — rare/distinctive bigrams boost a sentence's score\n4. **Greedy selection** — pick top-scored sentences until ~100 chars\n\n**Result**: 131-character summary (within the 50–150 target range), composed of 5 high-scoring sentences that capture the article's core themes: language/culture, design, and heritage.",
+  "transcript_path": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-mxfp8/10-zh-summarize/20260423-033224/_transcript.jsonl",
+  "gates": [
+    {
+      "gate_id": "search_quality",
+      "passed": false,
+      "detail": "0/0 reachable, need 1"
+    },
+    {
+      "gate_id": "poc_syntax",
+      "passed": true,
+      "detail": "compiled"
+    },
+    {
+      "gate_id": "poc_runs",
+      "passed": false,
+      "detail": "exit=127 (want 0) | last_stderr: /bin/sh: python: command not found"
+    },
+    {
+      "gate_id": "output_length_in_range",
+      "passed": false,
+      "detail": "matched 0/1, need 1"
+    },
+    {
+      "gate_id": "readme_justifies_method",
+      "passed": true,
+      "detail": "hit: ['extractive', 'tf-idf', 'frequency', 'n-gram', 'stdlib', 'no network', 'offline']"
+    }
+  ],
+  "completion": false,
+  "score": 0.4,
+  "aborted": ""
+}

@@ -1,0 +1,42 @@
+{
+  "model": "35b-a3b-dwq-vanilla",
+  "topic_id": "08-llm-serving-table",
+  "sandbox_dir": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/35b-a3b-dwq-vanilla/08-llm-serving-table/20260423-024900",
+  "turns": 20,
+  "tool_calls": 38,
+  "tool_errors": 0,
+  "wall_time_s": 99.13,
+  "finish_reason": "stop",
+  "final_message": "Both files are written correctly. Here's a summary of what was delivered:\n\n**Files created:**\n\n1. **summary.md** — Markdown table with 5 OSS local LLM serving frameworks:\n   - **llama.cpp** (C/C++) — Apple Silicon ✅, GGUF quantization, tool calling ✅\n   - **Ollama** (Go) — Apple Silicon ✅ (Metal + MLX preview), GGUF quantization, tool calling ✅\n   - **vLLM** (Python) — Apple Silicon ✅ (vllm-metal plugin), FP8/INT8/INT4/GPTQ/AWQ/GGUF, tool calling ✅\n   - **MLX-LM** (Python) — Apple Silicon ✅ (native), INT4/INT8/MXFP4, tool calling ✅\n   - **TGI** (Rust) — Apple Silicon ❌ (CPU-only), GPTQ/AWQ/bitsandbytes/EXL2/FP8, tool calling ✅\n\n2. **notes.md** — One paragraph (5 sentences) summarizing the tradeoffs across the frameworks.\n\n**Constraints met:**\n- 5 rows in the table ✅\n- 4 of 5 frameworks support Apple Silicon (≥3 required) ✅\n- All 5 repo URLs verified reachable (HTTP 200) ✅\n- No guessing — all data sourced from official docs/repos ✅\n- No third-party packages needed, so no requirements.txt required ✅",
+  "transcript_path": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/35b-a3b-dwq-vanilla/08-llm-serving-table/20260423-024900/_transcript.jsonl",
+  "gates": [
+    {
+      "gate_id": "summary_md_exists",
+      "passed": true,
+      "detail": "matched 2/2, need 0"
+    },
+    {
+      "gate_id": "table_has_rows",
+      "passed": true,
+      "detail": "hit: ['llama.cpp', 'mlx', 'vllm', 'ollama', 'tgi']"
+    },
+    {
+      "gate_id": "urls_in_table",
+      "passed": true,
+      "detail": "101/117 reachable, need 4"
+    },
+    {
+      "gate_id": "notes_exists",
+      "passed": true,
+      "detail": "hit: ['tradeoff', 'compare', 'performance', 'support']"
+    },
+    {
+      "gate_id": "honest_unknowns",
+      "passed": true,
+      "detail": "matched 1/3, need 0"
+    }
+  ],
+  "completion": true,
+  "score": 1.0,
+  "aborted": ""
+}

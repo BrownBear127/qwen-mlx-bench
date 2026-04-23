@@ -1,0 +1,57 @@
+id: 03-sqlite-migration
+domain: infra
+fail_mode_probe: off_topic_drift_lib_overdependence
+prompt: |
+  Write a minimal POC for a SQLite schema migration system using ONLY Python stdlib
+  (no third-party libraries, no alembic, no sqlalchemy, no yoyo, etc.). Just `sqlite3`
+  module and stdlib.
+
+  Requirements:
+    - Maintain a `schema_migrations` table tracking applied migration ids
+    - Migrations are .sql files in a `migrations/` subdirectory, named like `001_init.sql`, `002_add_users.sql`
+    - Running poc.py applies any pending migrations in order, idempotently
+    - Include 2 example migration files for demo
+    - Output: poc.py + README.md (no extra files outside migrations/)
+
+  Constraints:
+    - If your POC needs third-party Python packages, write a requirements.txt file (one per line) so the verifier can install them
+    - poc.py must be runnable with: python poc.py (NO uv extras, NO third-party deps)
+    - First run creates db + applies both migrations
+    - Second run prints "no pending migrations" (idempotent check)
+
+max_turns: 30
+wall_time_limit_s: 480
+
+gates:
+  - id: search_quality
+    type: url_reachable
+    required_count: 2
+    extract_from: full_transcript
+    timeout_per_url: 5
+
+  - id: poc_syntax
+    type: py_compile
+    file: poc.py
+
+  - id: poc_runs
+    type: run_command
+    cmd_template: "python poc.py && python poc.py"
+    timeout_s: 30
+    expect_exit_code: 0
+
+  - id: idempotency_signal
+    type: regex_any
+    patterns:
+      - "(?i)no pending"
+      - "(?i)already applied"
+      - "(?i)up.to.date"
+    against: poc_stdout
+    required_matches: 1
+
+  - id: stdlib_only
+    type: regex_any
+    patterns:
+      - "^import sqlite3"
+      - "^from sqlite3"
+    against: poc_stdout  # we'll repurpose - actually checks file content via separate gate
+    required_matches: 0  # skip - relying on subprocess to enforce

@@ -1,0 +1,62 @@
+id: 10-zh-summarize
+domain: writing
+fail_mode_probe: local_constraint_compliance
+prompt: |
+  Write a minimal POC that summarizes a Traditional Chinese (繁體中文) article
+  to roughly 100 characters. The POC must run fully OFFLINE with no network calls
+  and use only Python stdlib (no transformers, no openai, no tiktoken, no llama-cpp,
+  nothing that requires network or large model downloads).
+
+  Approach hint: this is intentionally constrained — the goal is to test whether
+  you can produce something simple but reasonable (e.g. extractive summarization
+  via sentence ranking, or first-N-chars + last-N-chars heuristic, or TF-IDF on
+  character n-grams). It doesn't have to be brilliant; it just has to run cleanly
+  under the constraints and produce a 50-150 char output.
+
+  Setup:
+    - Embed this 繁體中文 sample article in poc.py as a string variable (≥500 chars
+      of real-looking traditional Chinese — e.g. discussion of 設計 / 文化 / 寫作 /
+      工藝 / 語言 / 食物 anything coherent)
+    - Run summarize() on it
+    - Print the result and its character count
+
+  Output:
+    - poc.py + README.md (README explains your summarization approach and why you
+      think it's reasonable given the no-network constraint)
+
+max_turns: 30
+wall_time_limit_s: 480
+
+gates:
+  - id: search_quality
+    type: url_reachable
+    required_count: 1  # research is optional here, this is mostly an implementation puzzle
+    extract_from: full_transcript
+    timeout_per_url: 5
+
+  - id: poc_syntax
+    type: py_compile
+    file: poc.py
+
+  - id: poc_runs
+    type: run_command
+    cmd_template: "python poc.py"
+    timeout_s: 30
+    expect_exit_code: 0
+
+  - id: output_length_in_range
+    type: regex_any
+    patterns:
+      - "[一-龥]{30,}"  # at least 30 traditional CJK chars in output (rough sanity)
+    against: poc_stdout
+    required_matches: 1
+
+  - id: readme_justifies_method
+    type: keyword_any
+    keywords: ["extractive", "ranking", "tf-idf", "frequency", "heuristic", "n-gram", "stdlib", "no network", "offline"]
+    file: README.md
+    case_insensitive: true
+
+scoring:
+  total_gates: 5
+  pass_threshold: 4

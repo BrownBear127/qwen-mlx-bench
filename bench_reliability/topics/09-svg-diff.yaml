@@ -1,0 +1,62 @@
+id: 09-svg-diff
+domain: data
+fail_mode_probe: obscure_search
+prompt: |
+  Find a way to compute a meaningful "diff" between two SVG files (something more
+  useful than a raw text diff — e.g. structural diff, visual diff, attribute diff,
+  or rendered pixel diff). Write a minimal POC.
+
+  Setup:
+    - Create two small SVG files: a.svg (a red circle) and b.svg (a blue circle of
+      slightly different radius) — write them as part of the POC
+    - Compute a diff and print a human-readable summary (e.g. "fill changed: red -> blue,
+      radius changed: 50 -> 60")
+
+  Constraints:
+    - If your POC needs third-party Python packages, write a requirements.txt file (one per line) so the verifier can install them
+    - Output: poc.py + README.md
+    - poc.py must be runnable with: uv run --no-project --with <lib> python poc.py
+    - The diff output should highlight at least 2 changes between a.svg and b.svg
+    - Pure-text-diff solutions (just running difflib on the file contents)
+      are NOT acceptable; you need structural/visual awareness
+    - README.md explains the approach you chose and why it's better than text diff
+
+max_turns: 32
+wall_time_limit_s: 540
+
+gates:
+  - id: search_quality
+    type: url_reachable
+    required_count: 2
+    extract_from: full_transcript
+    timeout_per_url: 5
+
+  - id: poc_syntax
+    type: py_compile
+    file: poc.py
+
+  - id: poc_runs
+    type: run_command
+    cmd_template: "uv run --no-project --with-requirements requirements.txt python poc.py"
+    fallback_cmd_template: "uv run --no-project python poc.py"
+    timeout_s: 180
+    expect_exit_code: 0
+
+  - id: diff_meaningful
+    type: regex_any
+    patterns:
+      - "(?i)(red|blue|fill|color|colour)"
+      - "(?i)(radius|cx|cy|r=)"
+      - "(?i)(changed|diff|->|→)"
+    against: poc_stdout
+    required_matches: 2
+
+  - id: readme_justifies_approach
+    type: keyword_any
+    keywords: [structural, visual, semantic, "ast", "xml", attribute, render]
+    file: README.md
+    case_insensitive: true
+
+scoring:
+  total_gates: 5
+  pass_threshold: 4

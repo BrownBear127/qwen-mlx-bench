@@ -1,0 +1,42 @@
+{
+  "model": "27b-6bit",
+  "topic_id": "05-otel-collector-vs-sdk",
+  "sandbox_dir": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-6bit/05-otel-collector-vs-sdk/20260423-005549",
+  "turns": 14,
+  "tool_calls": 17,
+  "tool_errors": 1,
+  "wall_time_s": 237.15,
+  "finish_reason": "stop",
+  "final_message": "Both deliverables are ready. Here's a summary:\n\n---\n\n**`poc.py`** — A minimal OpenTelemetry SDK proof-of-concept that:\n- Creates a `TracerProvider` with a named resource (`otel-sdk-poc`)\n- Attaches a `SimpleSpanProcessor` with a custom `JSONSpanExporter`\n- Creates one span (`hello-span`) with one attribute (`http.method: \"GET\"`)\n- Prints the exported span as clean JSON to stdout\n- Runs with: `uv run --no-project --with opentelemetry-api --with opentelemetry-sdk python poc.py`\n- No network calls, no Collector, no external services\n\n**`README.md`** — Clearly distinguishes the two components:\n- **SDK** (≥3 sentences): The library embedded in your app that generates telemetry and decides where to send it.\n- **Collector** (≥3 sentences): The standalone proxy that receives, processes, and forwards telemetry from many sources to backends.\n- Includes a comparison table and explains why this POC uses only the SDK.",
+  "transcript_path": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-6bit/05-otel-collector-vs-sdk/20260423-005549/_transcript.jsonl",
+  "gates": [
+    {
+      "gate_id": "search_quality",
+      "passed": false,
+      "detail": "1/1 reachable, need 3"
+    },
+    {
+      "gate_id": "poc_syntax",
+      "passed": true,
+      "detail": "compiled"
+    },
+    {
+      "gate_id": "poc_runs",
+      "passed": true,
+      "detail": "exit=0 (want 0)"
+    },
+    {
+      "gate_id": "trace_emitted",
+      "passed": true,
+      "detail": "matched 2/3, need 2"
+    },
+    {
+      "gate_id": "readme_disambiguates",
+      "passed": true,
+      "detail": "hit: ['collector', 'sdk', 'in-process', 'exporter', 'vendor-agnostic']"
+    }
+  ],
+  "completion": true,
+  "score": 0.8,
+  "aborted": ""
+}

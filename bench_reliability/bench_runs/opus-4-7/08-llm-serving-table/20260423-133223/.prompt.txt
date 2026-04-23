@@ -1,0 +1,18 @@
+Research the current OSS landscape for "local LLM serving frameworks" (frameworks
+that run inference on-device, not hosted services). Produce a markdown table with
+AT LEAST 5 rows.
+
+Required columns:
+  | Name | Language | Apple Silicon support | Quantization formats supported | Tool calling? | Repo URL |
+
+Output:
+  - Write the table to summary.md
+  - Also write a notes.md with one paragraph (3-5 sentences) summarizing the
+    tradeoffs across the frameworks you chose
+
+Constraints:
+  - If your POC needs third-party Python packages, write a requirements.txt file (one per line) so the verifier can install them
+  - All Repo URLs must be real and reachable
+  - At least 3 of the 5+ frameworks should support Apple Silicon
+  - Be honest if you don't know a column value — write "?" rather than guessing
+  - No POC code needed for this topic

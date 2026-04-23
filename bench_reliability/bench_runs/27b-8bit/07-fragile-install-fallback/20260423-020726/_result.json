@@ -1,0 +1,42 @@
+{
+  "model": "27b-8bit",
+  "topic_id": "07-fragile-install-fallback",
+  "sandbox_dir": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-8bit/07-fragile-install-fallback/20260423-020726",
+  "turns": 8,
+  "tool_calls": 7,
+  "tool_errors": 0,
+  "wall_time_s": 254.24,
+  "finish_reason": "stop",
+  "final_message": "Everything is working. Here's a summary of what was delivered:\n\n## Deliverables\n\n### `poc.py`\n- **Fallback chain**: `piper-tts` → `pyttsx3` → print-only\n- **Auto-installs** missing packages via `subprocess` (no pre-install needed)\n- **Re-checks imports** after install to catch system-dep failures (e.g., missing `espeak-ng`)\n- **Never crashes** — exits cleanly with exit code 0 even when no backend works\n- Prints a clear summary showing which backend was used and where the output file is\n\n### `requirements.txt`\n- Lists `piper-tts` and `pyttsx3` for optional pre-installation\n\n### `README.md`\n- Documents the 3-tier fallback strategy with a table\n- Explains the import → install → re-check → synthesize flow\n- Includes example outputs for both success and failure scenarios\n- Notes known platform-specific issues (macOS espeak-ng, Apple Silicon wheels, Linux speech-dispatcher)\n\n### Test run result\nOn this environment: `piper-tts` was installed but couldn't obtain a voice model, so it fell back to `pyttsx3` which successfully synthesized `output_pyttsx3.wav` (103 KB).",
+  "transcript_path": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-8bit/07-fragile-install-fallback/20260423-020726/_transcript.jsonl",
+  "gates": [
+    {
+      "gate_id": "search_quality",
+      "passed": false,
+      "detail": "0/0 reachable, need 2"
+    },
+    {
+      "gate_id": "poc_syntax",
+      "passed": true,
+      "detail": "compiled"
+    },
+    {
+      "gate_id": "poc_does_not_crash",
+      "passed": false,
+      "detail": "exit=127 (want 0) | last_stderr: /bin/sh: python: command not found"
+    },
+    {
+      "gate_id": "backend_reported",
+      "passed": false,
+      "detail": "matched 0/4, need 1"
+    },
+    {
+      "gate_id": "readme_explains_fallback",
+      "passed": true,
+      "detail": "hit: ['fallback', 'graceful degradation', 'try']"
+    }
+  ],
+  "completion": false,
+  "score": 0.4,
+  "aborted": ""
+}

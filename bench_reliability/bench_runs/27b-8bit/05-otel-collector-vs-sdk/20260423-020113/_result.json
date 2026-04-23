@@ -1,0 +1,42 @@
+{
+  "model": "27b-8bit",
+  "topic_id": "05-otel-collector-vs-sdk",
+  "sandbox_dir": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-8bit/05-otel-collector-vs-sdk/20260423-020113",
+  "turns": 15,
+  "tool_calls": 16,
+  "tool_errors": 0,
+  "wall_time_s": 265.45,
+  "finish_reason": "stop",
+  "final_message": "Both deliverables are ready. Here's a summary:\n\n---\n\n**Delivered files:**\n\n- **`poc.py`** — Minimal OpenTelemetry SDK POC that creates a single trace span (`hello-span`) with one attribute (`http.method: \"GET\"`) and exports it as JSON to stdout. Uses `SimpleSpanProcessor` + a custom `JSONConsoleExporter` — no network, no Collector.\n- **`README.md`** — Explains the Collector vs SDK distinction in its own words (≥3 sentences each), includes a comparison table, and documents how to run the POC.\n\n**Run command:**\n```bash\nuv run --no-project --with opentelemetry-api --with opentelemetry-sdk python poc.py\n```",
+  "transcript_path": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-8bit/05-otel-collector-vs-sdk/20260423-020113/_transcript.jsonl",
+  "gates": [
+    {
+      "gate_id": "search_quality",
+      "passed": false,
+      "detail": "0/0 reachable, need 3"
+    },
+    {
+      "gate_id": "poc_syntax",
+      "passed": true,
+      "detail": "compiled"
+    },
+    {
+      "gate_id": "poc_runs",
+      "passed": true,
+      "detail": "exit=0 (want 0)"
+    },
+    {
+      "gate_id": "trace_emitted",
+      "passed": true,
+      "detail": "matched 3/3, need 2"
+    },
+    {
+      "gate_id": "readme_disambiguates",
+      "passed": true,
+      "detail": "hit: ['collector', 'sdk', 'exporter', 'vendor-agnostic']"
+    }
+  ],
+  "completion": true,
+  "score": 0.8,
+  "aborted": ""
+}

@@ -1,0 +1,42 @@
+{
+  "model": "27b-8bit",
+  "topic_id": "01-vector-db",
+  "sandbox_dir": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-8bit/01-vector-db/20260423-014404",
+  "turns": 19,
+  "tool_calls": 18,
+  "tool_errors": 0,
+  "wall_time_s": 162.92,
+  "finish_reason": "stop",
+  "final_message": "Everything is in place. Here's a summary:\n\n---\n\n**Library chosen:** **ChromaDB** (`chromadb`) — an open-source embedding database that runs natively on macOS Apple Silicon with zero configuration.\n\n**Why:** It handles text-to-embedding conversion automatically, requires no external server, and works in-memory. Perfect for a lightweight POC on M-series Macs.\n\n**Distance metric:** **Cosine distance** (default). The POC converts it to similarity scores (`1 - distance`) for readability.\n\n**Results for query *\"Where do animals go when seasons change?\"*:**\n\n| Rank | Similarity | Sentence |\n|------|-----------|----------|\n| 1 | 0.2163 | Migratory species follow seasonal patterns. |\n| 2 | 0.0125 | Birds fly south for the winter. |\n| 3 | -0.5684 | The kitten purred contentedly. |\n\nThe top results correctly identify the sentences about migration and seasonal animal movement as most semantically similar to the query.\n\n**Files delivered:** `poc.py`, `README.md`, `requirements.txt`",
+  "transcript_path": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-8bit/01-vector-db/20260423-014404/_transcript.jsonl",
+  "gates": [
+    {
+      "gate_id": "search_quality",
+      "passed": true,
+      "detail": "6/6 reachable, need 3"
+    },
+    {
+      "gate_id": "poc_syntax",
+      "passed": true,
+      "detail": "compiled"
+    },
+    {
+      "gate_id": "poc_runs",
+      "passed": true,
+      "detail": "exit=0 (want 0)"
+    },
+    {
+      "gate_id": "poc_output_shape",
+      "passed": true,
+      "detail": "matched 2/3, need 2"
+    },
+    {
+      "gate_id": "readme_explains_metric",
+      "passed": true,
+      "detail": "hit: ['cosine', 'dot product']"
+    }
+  ],
+  "completion": true,
+  "score": 1.0,
+  "aborted": ""
+}

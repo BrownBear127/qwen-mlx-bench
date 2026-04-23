@@ -1,0 +1,42 @@
+{
+  "model": "27b-mxfp4",
+  "topic_id": "01-vector-db",
+  "sandbox_dir": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-mxfp4/01-vector-db/20260423-033629",
+  "turns": 24,
+  "tool_calls": 23,
+  "tool_errors": 5,
+  "wall_time_s": 126.9,
+  "finish_reason": "stop",
+  "final_message": "All deliverables are in place. Here's a summary:\n\n## Summary\n\n**Library chosen:** ChromaDB — an open-source vector database that runs natively on macOS Apple Silicon with zero configuration.\n\n**Why:** It's lightweight (in-memory by default), requires no server setup, auto-embeds text using built-in sentence-transformer models, and has a tiny dependency footprint (`pip install chromadb`).\n\n**Distance metric:** Cosine distance (1 − cosine similarity). The POC converts Chroma's raw cosine distance back to a similarity score via `similarity = 1 − distance`.\n\n**Results for query \"Where do animals go when seasons change?\":**\n\n| Rank | Similarity | Sentence |\n|------|-----------|----------|\n| 1 | 0.2163 | Migratory species follow seasonal patterns. |\n| 2 | 0.0125 | Birds fly south for the winter. |\n| 3 | -0.5684 | The kitten purred contentedly. |\n\nThe top result (\"Migratory species follow seasonal patterns\") is semantically the most relevant match, which confirms the embedding and similarity search are working correctly.\n\n**Files produced:** `poc.py`, `README.md`, `requirements.txt`",
+  "transcript_path": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-mxfp4/01-vector-db/20260423-033629/_transcript.jsonl",
+  "gates": [
+    {
+      "gate_id": "search_quality",
+      "passed": false,
+      "detail": "0/0 reachable, need 3"
+    },
+    {
+      "gate_id": "poc_syntax",
+      "passed": true,
+      "detail": "compiled"
+    },
+    {
+      "gate_id": "poc_runs",
+      "passed": true,
+      "detail": "exit=0 (want 0)"
+    },
+    {
+      "gate_id": "poc_output_shape",
+      "passed": true,
+      "detail": "matched 2/3, need 2"
+    },
+    {
+      "gate_id": "readme_explains_metric",
+      "passed": true,
+      "detail": "hit: ['cosine']"
+    }
+  ],
+  "completion": true,
+  "score": 0.8,
+  "aborted": ""
+}

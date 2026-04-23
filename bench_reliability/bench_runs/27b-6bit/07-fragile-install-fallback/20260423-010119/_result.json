@@ -1,0 +1,42 @@
+{
+  "model": "27b-6bit",
+  "topic_id": "07-fragile-install-fallback",
+  "sandbox_dir": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-6bit/07-fragile-install-fallback/20260423-010119",
+  "turns": 17,
+  "tool_calls": 19,
+  "tool_errors": 0,
+  "wall_time_s": 508.22,
+  "finish_reason": "stop",
+  "final_message": "Both deliverables are in place. Here's a summary:\n\n## Deliverables\n\n### `poc.py`\n- Attempts TTS backends in order: **piper-tts** → **pyttsx3** → **print-only fallback**\n- Self-installs packages via `subprocess` (handles PEP 668 environments with `--break-system-packages`/`--user` flags)\n- Synthesizes `\"hello world reliability test\"` to `output.wav`\n- Prints which backend was used and output file details\n- **Never crashes** — all exceptions are caught and handled gracefully\n\n### `README.md`\n- Documents the 3-tier fallback strategy with pros/cons of each backend\n- Includes an ASCII flowchart of the decision logic\n- Explains usage, requirements, and expected output\n\n### Test Results\nOn this environment, the script successfully:\n1. Installed `piper-tts` but couldn't find/download a voice model → fell through\n2. Installed `pyttsx3` and synthesized audio → **SUCCESS** (104,756 bytes AIFF-C audio)",
+  "transcript_path": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-6bit/07-fragile-install-fallback/20260423-010119/_transcript.jsonl",
+  "gates": [
+    {
+      "gate_id": "search_quality",
+      "passed": false,
+      "detail": "1/1 reachable, need 2"
+    },
+    {
+      "gate_id": "poc_syntax",
+      "passed": true,
+      "detail": "compiled"
+    },
+    {
+      "gate_id": "poc_does_not_crash",
+      "passed": false,
+      "detail": "exit=127 (want 0) | last_stderr: /bin/sh: python: command not found"
+    },
+    {
+      "gate_id": "backend_reported",
+      "passed": false,
+      "detail": "matched 0/4, need 1"
+    },
+    {
+      "gate_id": "readme_explains_fallback",
+      "passed": true,
+      "detail": "hit: ['fallback', 'try', 'except']"
+    }
+  ],
+  "completion": false,
+  "score": 0.4,
+  "aborted": ""
+}

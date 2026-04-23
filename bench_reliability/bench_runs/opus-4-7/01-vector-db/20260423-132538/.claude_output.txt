@@ -1,0 +1,17 @@
+Everything works. Here's what was created:
+
+**3 files** in the working directory:
+
+| File | Purpose |
+|---|---|
+| `poc.py` | Ingests 5 sentences into ChromaDB, queries for top-3 similar to the search phrase |
+| `requirements.txt` | Lists `chromadb` as the sole dependency |
+| `README.md` | Explains the library choice, why, and the distance metric |
+
+**Results** -- the top-3 matches for *"Where do animals go when seasons change?"*:
+
+1. **(0.6081)** Migratory species follow seasonal patterns.
+2. **(0.5062)** Birds fly south for the winter.
+3. **(0.2158)** The kitten purred contentedly.
+
+The two migration/seasonal sentences ranked highest, which is exactly what you'd expect. ChromaDB uses its built-in `all-MiniLM-L6-v2` sentence transformer for embeddings and cosine distance for similarity.

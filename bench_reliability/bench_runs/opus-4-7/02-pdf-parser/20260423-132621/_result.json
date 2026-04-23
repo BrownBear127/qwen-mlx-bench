@@ -1,0 +1,42 @@
+{
+  "model": "opus-4-7",
+  "topic_id": "02-pdf-parser",
+  "sandbox_dir": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/opus-4-7/02-pdf-parser/20260423-132621",
+  "turns": 1,
+  "tool_calls": 0,
+  "tool_errors": 0,
+  "wall_time_s": 97.15,
+  "finish_reason": "",
+  "final_message": "Done. Here's what was created:\n\n- **`poc.py`** — Downloads a PDF via `urllib`, parses it with PyMuPDF, and prints exactly the first 500 characters of page 1.\n- **`requirements.txt`** — Lists `pymupdf` as the sole dependency.\n- **`README.md`** — Explains why PyMuPDF is cross-platform (statically linked MuPDF, pre-built wheels for macOS/Linux/Windows, no system dependencies).\n\nRun it with:\n```bash\nuv run --no-project --with pymupdf python poc.py\n```\n",
+  "transcript_path": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/opus-4-7/02-pdf-parser/20260423-132621/_transcript.txt",
+  "gates": [
+    {
+      "gate_id": "search_quality",
+      "passed": false,
+      "detail": "0/0 reachable, need 3"
+    },
+    {
+      "gate_id": "poc_syntax",
+      "passed": true,
+      "detail": "compiled"
+    },
+    {
+      "gate_id": "poc_runs",
+      "passed": true,
+      "detail": "exit=0 (want 0)"
+    },
+    {
+      "gate_id": "poc_output_has_text",
+      "passed": false,
+      "detail": "matched 0/1, need 1"
+    },
+    {
+      "gate_id": "readme_addresses_portability",
+      "passed": true,
+      "detail": "hit: ['linux', 'cross-platform']"
+    }
+  ],
+  "completion": false,
+  "score": 0.6,
+  "aborted": ""
+}

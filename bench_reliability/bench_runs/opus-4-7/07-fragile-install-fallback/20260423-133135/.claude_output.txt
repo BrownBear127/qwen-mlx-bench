@@ -1,0 +1,7 @@
+The POC works correctly. Here's what was created:
+
+- **`poc.py`** -- Cascading TTS with three backends: `piper-tts` → `pyttsx3` → print fallback. Each backend is fully wrapped so failures at any stage (pip install, import, runtime) are caught gracefully.
+- **`requirements.txt`** -- Lists `pyttsx3` (the most likely backend to succeed; `piper-tts` is attempted at runtime but not listed since it rarely installs cleanly).
+- **`README.md`** -- Explains the fallback strategy.
+
+On this environment neither TTS library was available, so it correctly fell through to the print fallback without crashing.

@@ -1,0 +1,15 @@
+Find a tool that can batch-convert a directory of Markdown files to a single EPUB
+ebook. Write a minimal POC.
+
+Setup the POC like this:
+  - Create 3 sample .md files in a `chapters/` subdir (chapter1.md, chapter2.md, chapter3.md)
+    with a few paragraphs of placeholder content each
+  - Convert all 3 into a single book.epub
+  - Print the output file path and size
+
+Constraints:
+  - If your POC needs third-party Python packages, write a requirements.txt file (one per line) so the verifier can install them
+  - Output: poc.py + README.md
+  - poc.py must be runnable with: uv run --no-project --with <lib> python poc.py
+  - May shell out to a CLI tool (pandoc etc.) but must check it's installed first and provide install instructions on missing
+  - book.epub must actually exist after running, with size > 1KB

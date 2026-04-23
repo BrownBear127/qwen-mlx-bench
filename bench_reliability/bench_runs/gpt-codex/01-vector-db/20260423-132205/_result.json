@@ -1,0 +1,42 @@
+{
+  "model": "gpt-codex",
+  "topic_id": "01-vector-db",
+  "sandbox_dir": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/gpt-codex/01-vector-db/20260423-132205",
+  "turns": 6,
+  "tool_calls": 9,
+  "tool_errors": 0,
+  "wall_time_s": 240.24,
+  "finish_reason": "",
+  "final_message": "how Python vector search and `cosine` distance configuration.\n+- PyPI publishes a `macosx_11_0_arm64` wheel for `lancedb`, which is what makes it a good fit for Apple Silicon Macs.\n+\n+To keep the demo runnable with a single `uv run --with lancedb python poc.py` command, the script uses a tiny hand-built embedding function inside `poc.py` instead of adding a second package for embeddings.\n+\n+## Distance metric\n+\n+This POC uses `cosine` distance in LanceDB:\n+\n+- LanceDB returns `_distance` for cosine search.\n+- Cosine distance is `1 - cosine similarity`.\n+- The script prints `similarity = 1 - _distance`, so higher scores mean a closer match.\n+\n+## Run\n+\n+```bash\n+uv run --with lancedb python poc.py\n+```\n+\n+## Expected behavior\n+\n+The script ingests these five sentences into LanceDB, runs a similarity query for:\n+\n+`Where do animals go when seasons change?`\n+\n+and prints the top 3 matches with similarity scores.\n+\n+## Sources\n+\n+- LanceDB vector search docs: https://docs.lancedb.com/search/vector-search\n+- LanceDB search overview: https://docs.lancedb.com/search\n+- LanceDB PyPI package (includes macOS ARM64 wheel): https://pypi.org/project/lancedb/\ndiff --git a/bench_reliability/bench_runs/gpt-codex/01-vector-db/20260423-132205/poc.py b/bench_reliability/bench_runs/gpt-codex/01-vector-db/20260423-132205/poc.py\nnew file mode 100644\nindex 0000000000000000000000000000000000000000..d195ee68630855758f7dbef764436d7dfd69a5f9\n--- /dev/null\n+++ b/bench_reliability/bench_runs/gpt-codex/01-vector-db/20260423-132205/poc.py\n@@ -0,0 +1,101 @@\n+from __future__ import annotations\n+\n+import math\n+import re\n+import shutil\n+from pathlib import Path\n+\n+import lancedb\n+\n+SENTENCES = [\n+    \"The cat sat on the mat.\",\n+    \"A dog barked at the mailman.\",\n+    \"Birds fly south for the winter.\",\n+    \"The kitten purred contentedly.\",\n+    \"Migratory species follow seasonal patterns.\",\n+]\n+\n+QUERY = \"Where do animals go when seasons change?\"\n+\n+# Tiny hand-built concept vectors keep the POC to ",
+  "transcript_path": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/gpt-codex/01-vector-db/20260423-132205/_transcript.txt",
+  "gates": [
+    {
+      "gate_id": "search_quality",
+      "passed": true,
+      "detail": "3/3 reachable, need 3"
+    },
+    {
+      "gate_id": "poc_syntax",
+      "passed": true,
+      "detail": "compiled"
+    },
+    {
+      "gate_id": "poc_runs",
+      "passed": false,
+      "detail": "exit=1 (want 0) | last_stderr: ModuleNotFoundError: No module named 'lancedb'"
+    },
+    {
+      "gate_id": "poc_output_shape",
+      "passed": false,
+      "detail": "matched 0/3, need 2"
+    },
+    {
+      "gate_id": "readme_explains_metric",
+      "passed": true,
+      "detail": "hit: ['cosine']"
+    }
+  ],
+  "completion": false,
+  "score": 0.6,
+  "aborted": ""
+}

@@ -1,0 +1,42 @@
+{
+  "model": "35b-a3b-dwq-vanilla",
+  "topic_id": "05-otel-collector-vs-sdk",
+  "sandbox_dir": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/35b-a3b-dwq-vanilla/05-otel-collector-vs-sdk/20260423-024600",
+  "turns": 8,
+  "tool_calls": 11,
+  "tool_errors": 0,
+  "wall_time_s": 26.39,
+  "finish_reason": "stop",
+  "final_message": "The POC runs successfully. The span JSON is printed to stdout with the `greeting.target: \"world\"` attribute, no Collector is involved, and no network calls are made.\n\n**Summary:**\n\n- **`poc.py`** — Creates a `TracerProvider` with a `SimpleSpanProcessor` + `ConsoleSpanExporter`, emits a single span named `greeting` with one attribute (`greeting.target`), and prints the span as JSON to stdout.\n- **`README.md`** — Clearly distinguishes the SDK (language-specific library that generates telemetry inside your app) from the Collector (standalone proxy service that receives, processes, and routes telemetry from many sources), with ≥3 sentences for each and a comparison table.",
+  "transcript_path": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/35b-a3b-dwq-vanilla/05-otel-collector-vs-sdk/20260423-024600/_transcript.jsonl",
+  "gates": [
+    {
+      "gate_id": "search_quality",
+      "passed": false,
+      "detail": "0/0 reachable, need 3"
+    },
+    {
+      "gate_id": "poc_syntax",
+      "passed": true,
+      "detail": "compiled"
+    },
+    {
+      "gate_id": "poc_runs",
+      "passed": true,
+      "detail": "exit=0 (want 0)"
+    },
+    {
+      "gate_id": "trace_emitted",
+      "passed": true,
+      "detail": "matched 3/3, need 2"
+    },
+    {
+      "gate_id": "readme_disambiguates",
+      "passed": true,
+      "detail": "hit: ['collector', 'sdk', 'exporter', 'vendor-agnostic']"
+    }
+  ],
+  "completion": true,
+  "score": 0.8,
+  "aborted": ""
+}

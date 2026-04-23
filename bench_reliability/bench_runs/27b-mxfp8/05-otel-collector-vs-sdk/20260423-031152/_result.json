@@ -1,0 +1,42 @@
+{
+  "model": "27b-mxfp8",
+  "topic_id": "05-otel-collector-vs-sdk",
+  "sandbox_dir": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-mxfp8/05-otel-collector-vs-sdk/20260423-031152",
+  "turns": 11,
+  "tool_calls": 13,
+  "tool_errors": 1,
+  "wall_time_s": 171.67,
+  "finish_reason": "stop",
+  "final_message": "Done. Here's a summary of what was delivered:\n\n**`poc.py`** — A minimal, self-contained Python script that:\n- Creates an in-process `TracerProvider` (SDK component)\n- Attaches a `SimpleSpanProcessor` with a `ConsoleSpanExporter`\n- Creates a single span named `\"hello-span\"` with one attribute (`\"greeting\": \"Hello, OpenTelemetry!\"`)\n- Exports the span as JSON to stdout — no network calls, no Collector\n\n**`README.md`** — Clearly distinguishes the two components:\n- **SDK** (≥3 sentences): The in-process library that generates and exports telemetry from your application code.\n- **Collector** (≥3 sentences): The standalone proxy service that receives, processes, and forwards telemetry from many sources to backends.\n- Includes a comparison table and run instructions.",
+  "transcript_path": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-mxfp8/05-otel-collector-vs-sdk/20260423-031152/_transcript.jsonl",
+  "gates": [
+    {
+      "gate_id": "search_quality",
+      "passed": false,
+      "detail": "0/0 reachable, need 3"
+    },
+    {
+      "gate_id": "poc_syntax",
+      "passed": true,
+      "detail": "compiled"
+    },
+    {
+      "gate_id": "poc_runs",
+      "passed": true,
+      "detail": "exit=0 (want 0)"
+    },
+    {
+      "gate_id": "trace_emitted",
+      "passed": true,
+      "detail": "matched 3/3, need 2"
+    },
+    {
+      "gate_id": "readme_disambiguates",
+      "passed": true,
+      "detail": "hit: ['collector', 'sdk', 'in-process', 'agent', 'exporter', 'vendor-agnostic']"
+    }
+  ],
+  "completion": true,
+  "score": 0.8,
+  "aborted": ""
+}

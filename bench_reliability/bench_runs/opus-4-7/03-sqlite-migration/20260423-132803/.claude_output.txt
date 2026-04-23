@@ -1,0 +1,8 @@
+Everything works. Here's what was created:
+
+- **`poc.py`** — migration runner using only `sqlite3`, `glob`, and `os`
+- **`migrations/001_init.sql`** — creates `posts` table
+- **`migrations/002_add_users.sql`** — creates `users` table and adds `author_id` FK to posts
+- **`README.md`** — usage docs
+
+First run applies both migrations; second run prints "no pending migrations". No third-party dependencies needed.

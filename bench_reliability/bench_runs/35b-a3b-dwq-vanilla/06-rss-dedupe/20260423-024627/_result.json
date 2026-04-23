@@ -1,0 +1,42 @@
+{
+  "model": "35b-a3b-dwq-vanilla",
+  "topic_id": "06-rss-dedupe",
+  "sandbox_dir": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/35b-a3b-dwq-vanilla/06-rss-dedupe/20260423-024627",
+  "turns": 35,
+  "tool_calls": 35,
+  "tool_errors": 0,
+  "wall_time_s": 33.17,
+  "finish_reason": "",
+  "final_message": "",
+  "transcript_path": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/35b-a3b-dwq-vanilla/06-rss-dedupe/20260423-024627/_transcript.jsonl",
+  "gates": [
+    {
+      "gate_id": "search_quality",
+      "passed": true,
+      "detail": "3/3 reachable, need 2"
+    },
+    {
+      "gate_id": "poc_syntax",
+      "passed": false,
+      "detail": "poc.py missing"
+    },
+    {
+      "gate_id": "poc_runs",
+      "passed": false,
+      "detail": "exit=2 (want 0) | last_stderr: /Users/fran/projects/qwen-mlx-bench/.venv/bin/python3: can't open file '/Users/fran/projects/qwen-mlx-bench/bench_reliab"
+    },
+    {
+      "gate_id": "counts_printed",
+      "passed": false,
+      "detail": "matched 0/3, need 2"
+    },
+    {
+      "gate_id": "readme_explains_dedupe",
+      "passed": false,
+      "detail": "README.md missing"
+    }
+  ],
+  "completion": false,
+  "score": 0.2,
+  "aborted": "max_turns"
+}

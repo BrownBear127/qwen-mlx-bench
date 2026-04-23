@@ -1,0 +1,42 @@
+{
+  "model": "27b-mxfp4",
+  "topic_id": "03-sqlite-migration",
+  "sandbox_dir": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-mxfp4/03-sqlite-migration/20260423-034117",
+  "turns": 11,
+  "tool_calls": 10,
+  "tool_errors": 0,
+  "wall_time_s": 93.49,
+  "finish_reason": "stop",
+  "final_message": "Everything works. Here's a summary of the deliverables:\n\n### Deliverables\n\n| File | Description |\n|------|-------------|\n| `poc.py` | Migration runner — discovers `.sql` files in `migrations/`, tracks applied migrations in a `schema_migrations` table, and applies pending ones in order. Fully idempotent. |\n| `migrations/001_init.sql` | Creates the `projects` table |\n| `migrations/002_add_users.sql` | Creates `users` and `user_projects` tables |\n| `README.md` | Documentation |\n\n### Key design points\n\n- **Zero dependencies** — only `sqlite3` + stdlib modules (`os`, `re`, `argparse`, `sys`)\n- **Idempotent** — second run prints `no pending migrations`\n- **Ordered execution** — migrations sorted by numeric prefix (`001` < `002` < `010`)\n- **Atomic per-migration** — each migration runs in a transaction; failures are rolled back\n- **Extensible** — just drop a new `NNN_name.sql` file into `migrations/` and re-run",
+  "transcript_path": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-mxfp4/03-sqlite-migration/20260423-034117/_transcript.jsonl",
+  "gates": [
+    {
+      "gate_id": "search_quality",
+      "passed": false,
+      "detail": "0/0 reachable, need 2"
+    },
+    {
+      "gate_id": "poc_syntax",
+      "passed": true,
+      "detail": "compiled"
+    },
+    {
+      "gate_id": "poc_runs",
+      "passed": false,
+      "detail": "exit=127 (want 0) | last_stderr: /bin/sh: python: command not found"
+    },
+    {
+      "gate_id": "idempotency_signal",
+      "passed": false,
+      "detail": "matched 0/3, need 1"
+    },
+    {
+      "gate_id": "stdlib_only",
+      "passed": true,
+      "detail": "matched 0/2, need 0"
+    }
+  ],
+  "completion": false,
+  "score": 0.4,
+  "aborted": ""
+}

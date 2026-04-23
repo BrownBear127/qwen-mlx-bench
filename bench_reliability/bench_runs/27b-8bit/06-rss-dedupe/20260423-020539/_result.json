@@ -1,0 +1,42 @@
+{
+  "model": "27b-8bit",
+  "topic_id": "06-rss-dedupe",
+  "sandbox_dir": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-8bit/06-rss-dedupe/20260423-020539",
+  "turns": 8,
+  "tool_calls": 7,
+  "tool_errors": 0,
+  "wall_time_s": 97.53,
+  "finish_reason": "stop",
+  "final_message": "All done. Here's a summary of the deliverables:\n\n- **`requirements.txt`** — lists `feedparser` as the sole dependency.\n- **`poc.py`** — fetches the 3 RSS feeds, filters to the last 24 hours, deduplicates by normalized title (case-insensitive, whitespace-collapsed), and prints `(raw, deduped)` counts plus the first 5 unique titles. Network errors on individual feeds are caught and skipped.\n- **`README.md`** — documents usage, requirements, and how it works.\n\nRun with: `uv run --no-project --with feedparser python poc.py`",
+  "transcript_path": "/Users/fran/projects/qwen-mlx-bench/bench_reliability/bench_runs/27b-8bit/06-rss-dedupe/20260423-020539/_transcript.jsonl",
+  "gates": [
+    {
+      "gate_id": "search_quality",
+      "passed": true,
+      "detail": "3/3 reachable, need 2"
+    },
+    {
+      "gate_id": "poc_syntax",
+      "passed": true,
+      "detail": "compiled"
+    },
+    {
+      "gate_id": "poc_runs",
+      "passed": true,
+      "detail": "exit=0 (want 0)"
+    },
+    {
+      "gate_id": "counts_printed",
+      "passed": false,
+      "detail": "matched 0/3, need 2"
+    },
+    {
+      "gate_id": "readme_explains_dedupe",
+      "passed": true,
+      "detail": "hit: ['normalize', 'dedupe', 'duplicate', 'whitespace']"
+    }
+  ],
+  "completion": true,
+  "score": 0.8,
+  "aborted": ""
+}
